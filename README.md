@@ -42,7 +42,7 @@ These should follow from your project
 You should provide an answer to your problem statement
 
 ---
-##NEXT STESP 
+## NEXT STESP 
 Always focus on the positive (it's not what you did wrong, it's what you look forward to improving).
 Is your model ready for production? Probably not, but you can comment on how it might get there.
 Does this project demonstrate skills that you think could be applied to similar problems?
