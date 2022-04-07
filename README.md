@@ -2,7 +2,7 @@
 _Groundbreaking Work_
 
 ## Problem statement: Does increase in _NOx_, _SOx_, _PPMx_ predict incidence of _asthma_, _COPD_ or related disease? 
-* SPECIFIC: two diseases 
+* SPECIFIC: pick diseases, pick emissions, pick time frame, pick location.
 * MEASURABLE: incidence before, after specified time period. 
 * Achievable: can we get the data? 
 * Relevant: YES. We care about the cost of our online shopping? 
