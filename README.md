@@ -1,7 +1,7 @@
 # Health Outcomes: Proximity to Online-Shopping Distribution Hubs
 _Groundbreaking Work_
 
-## Problem statement Does increase in _NOx_, _SOx_, _PPMx_ predict incidence of _asthma_, _COPD_ or related disease? 
+## Problem statement: Does increase in _NOx_, _SOx_, _PPMx_ predict incidence of _asthma_, _COPD_ or related disease? 
 * SPECIFIC: two diseases 
 * MEASURABLE: incidence before, after specified time period. 
 * Achievable: can we get the data? 
