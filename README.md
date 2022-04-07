@@ -1,4 +1,4 @@
-$below is modelled from capstone read.me guidelines$
+$ below is modelled from capstone read.me guidelines $
 # Health Outcomes: Proximity to Online-Shopping Distribution Hubs
 _Groundbreaking Work_
 
