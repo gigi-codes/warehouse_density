@@ -1,5 +1,8 @@
 _below is modelled from capstone read.me guidelines_
-# Health Outcomes: Proximity to Online-Shopping Distribution Hubs
+---
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Health Outcomes: Proximity to Online-Shopping Distribution Hubs
+---
+
 _Groundbreaking Work_
 
 ## Problem statement: Does increase in _NOx_, _SOx_, _PPMx_ predict incidence of _asthma_, _COPD_ or related disease? 
