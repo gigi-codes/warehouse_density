@@ -1,56 +1,65 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Health Outcomes: Proximity to Online-Shopping Distribution Hubs
 ---
 _Groundbreaking Work_ <br>
-_templete modelled from capstone read.me guidelines_
+_Template modelled from capstone guidelines._
 
 ## Problem statement: Does increase in _NOx_, _SOx_, _PPMx_ predict incidence of _asthma_, _COPD_ or related disease? 
-* SPECIFIC: pick diseases, pick emissions, pick time frame, pick location.
+> * SPECIFIC-select: 
+>    * diseases
+>    * emissions
+>    * time frame
+>    * location(s)
 * MEASURABLE: incidence before, after specified time period. 
 * Achievable: can we get the data? 
 * Relevant: YES. We care about the cost of our online shopping? 
-* Time-bound: YES: We have to pick years. 
+* Time-bound: YES: We have to select the period/ years we wish to model. 
 
-### DATA
+## _Data: Sources_
 
-Source  | Sample, Features | Size  | Link 
----     | ---         | ---   | ---
-CA EPA  | Data 1      | 10x10 | [Link](./intro-to-probability.pdf)
-NOAA    | Data 2      | 1KB   | [Link](./starter-code.ipynb)
-
+Source                            | Sample, Features     | Size  
+---                               | ---                  | ---   
+<a href = "epa.gov"> CA EPA </a>  | $CO_2$ measuresments | 10x10 
+<a href = "noaa.gov"> NOAA </a>   | illness incidence    | 1KB  
 > **Dataset Description:** Data Desccribe 
 ----
 
-## TARGET 
+## _Target?Goal_
 We are regressing, classifying, using a un supervised netowkr to say yes or no, or quantify a change. 
 
-## DATA DICTIONARY 
+## _Data Dictionary_
 Data dictionary (describe every feature in your data set, or at least those features that were prominent in your final model)
 
-## EDA 
+variable name   | Type        | Description 
+---             | ---         | ---   
+CO2             | numeric     | $CO_2$ in ppm 
+asthma          | binary      | asthma yes = 1
+asthma          | rate        | incidence rate, cases/ 100 population
+
+## _Exploratory Data Analyses_ 
 Consider including a plot or two from your EDA
 
 ---
-## MODEL PERFORMANCE 
+## _Model Performance_ 
 Model performance on training/test data
 Did you fit many models? Feel free to summarize some of your scores here.
 Consider useing a markdown table to make results easy to review.
 It should be clear which model you chose for production and why.
 
-## MODEL SELECTION AND FINDINGS
+## _Model Selection and Findings_
 Primary findings/conclusions/recommendations
 These should follow from your project
 
-### ANSWER 
+### _Conclusion_
 You should provide an answer to your problem statement
 
 ---
-## NEXT STESP 
+## _Next Steps_
 Always focus on the positive (it's not what you did wrong, it's what you look forward to improving).
 Is your model ready for production? Probably not, but you can comment on how it might get there.
 Does this project demonstrate skills that you think could be applied to similar problems?
 
 ---
-# USE REUSABLE FUNCTIONS
+### ADDENDUM: make reusable functions
 Writing code in functions serves many purposes, but for the purpose of these projects I want to focus on two.
 
 Writing functions to perform individual tasks will clarify, to you as well as the reader, what each line of code is doing. Just like how we use separate notebooks to allow readers to keep distinct tasks separated in their minds, functions can serve an identically helpful organizational purpose.
