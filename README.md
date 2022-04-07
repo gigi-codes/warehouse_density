@@ -1,3 +1,4 @@
+$below is modelled from capstone read.me guidelines$
 # Health Outcomes: Proximity to Online-Shopping Distribution Hubs
 _Groundbreaking Work_
 
@@ -46,3 +47,10 @@ You should provide an answer to your problem statement
 Always focus on the positive (it's not what you did wrong, it's what you look forward to improving).
 Is your model ready for production? Probably not, but you can comment on how it might get there.
 Does this project demonstrate skills that you think could be applied to similar problems?
+
+---
+# USE REUSABLE FUNCTIONS
+Writing code in functions serves many purposes, but for the purpose of these projects I want to focus on two.
+
+Writing functions to perform individual tasks will clarify, to you as well as the reader, what each line of code is doing. Just like how we use separate notebooks to allow readers to keep distinct tasks separated in their minds, functions can serve an identically helpful organizational purpose.
+When you are interviewing, you will absolutely be expected to write functions since that is how code is, in practice, written and used. It is genuinely a very important part of writing code.
