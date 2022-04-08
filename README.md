@@ -1,9 +1,8 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Health Outcomes: Proximity to Online-Shopping Distribution Hubs
 ---
-_Groundbreaking Work_ <br>
 _Template modelled from capstone guidelines._
 
-## Problem statement: Does increase in _NOx_, _SOx_, _PPMx_ predict incidence of _asthma_, _COPD_ or related disease? 
+## Does increase in _NOx_, _SOx_, _PPMx_ predict incidence of _asthma_, _COPD_ or related disease? 
 > * SPECIFIC-select: 
 >    * diseases
 >    * emissions
@@ -16,11 +15,22 @@ _Template modelled from capstone guidelines._
 
 ## _Data: Sources_
 
-Source                            | Sample, Features     | Size  
----                               | ---                  | ---   
-<a href = "epa.gov"> CA EPA </a>  | $CO_2$ measuresments | 10x10 
-<a href = "noaa.gov"> NOAA </a>   | illness incidence    | 1KB  
+|Source                            | File     | Date  |
+|---                               | ---                  | ---   |
+
+|<a href = "https://data.ca.gov/dataset/calenviroscreen-2-0"> CalEnviroScreen 2 </a>     |  <a href = "https://oehha.ca.gov/media/downloads/calenviroscreen/report/ces20updateoct2014.xlsx"> Data (xlsx) </a> | Oct 2014  |
+
+
+|<a href = "https://oehha.ca.gov/calenviroscreen/report/calenviroscreen-30"> CalEnviroScreen 3 </a>  | <a href =  "https://oehha.ca.gov/media/downloads/calenviroscreen/document/ces3results.xlsx"> Data (xlsx) </a>     | June 2018 |
+
+
+|<a href = "https://calenviroscreen-oehha.hub.arcgis.com"> CalEnviroScreen 4 </a> | <a href = "https://calenviroscreen-oehha.hub.arcgis.com"> Data (xlsx) </a>| Oct 2021  |
+
+
+
 > **Dataset Description:** Data Desccribe 
+
+
 ----
 
 ## _Target?Goal_
