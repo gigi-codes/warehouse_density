@@ -24,7 +24,11 @@ _Template modelled from capstone guidelines._
 |<a href = "https://oehha.ca.gov/calenviroscreen/report/calenviroscreen-30"> CalEnviroScreen 3 </a>  | <a href =  "https://oehha.ca.gov/media/downloads/calenviroscreen/document/ces3results.xlsx"> Data (xlsx) </a>     | June 2018 |
 
 
+<<<<<<< HEAD
 |<a href = "https://calenviroscreen-oehha.hub.arcgis.com"> CalEnviroScreen 4 </a> | <a href = "https://calenviroscreen-oehha.hub.arcgis.com"> Data (xlsx) </a>| Oct 2021  |
+=======
+|<a href = "https://calenviroscreen-oehha.hub.arcgis.com"> CalEnviroScreen 4 </a> | <a href = "https://calenviroscreen-oehha.hub.arcgis.com"> Data, Dictionarty ZIP </a>| Oct 2021  |
+>>>>>>> d6a9e7e9fe708391fbd39cab13cf0fdecabd3e7c
 
 
 
