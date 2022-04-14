@@ -74,3 +74,24 @@ Writing code in functions serves many purposes, but for the purpose of these pro
 
 Writing functions to perform individual tasks will clarify, to you as well as the reader, what each line of code is doing. Just like how we use separate notebooks to allow readers to keep distinct tasks separated in their minds, functions can serve an identically helpful organizational purpose.
 When you are interviewing, you will absolutely be expected to write functions since that is how code is, in practice, written and used. It is genuinely a very important part of writing code.
+
+---
+## CALENDAR
+
+> ### April, PDT
+
+
+| monday | tuesday | wednesday | thursday | friday | saturday | sunday
+|--------|---------|-----------|----------|--------|----------|--------
+| 11     | 12      | 13        | 14       | 15     | 16       | 17 
+| /      | /       |           |          |        |          | MTG
+| /      | /       |           |          |        |          | Final Data Select
+| 18     | 19      | 20        | 21       | 22     | 23       | 24 
+|        |         |           |          |        |          | MTG
+|        |         |           |          |        |          | Final Models
+| 25     | 26      | 27        | 28             | 29     |          |
+|        |         |Prez Prep, I           | Prez Prep II  |  <b>*DUE*</b>      |
+|        |         |Final Edits           |          |        |          | 
+
+
+> ### <a href = "https://docs.google.com/spreadsheets/d/1ANNmWiE-c8f3_PcVUyNqUl5LC-RZKtLLuI6cJGyq0Hc/edit?usp=sharing"> Timeline/ Checklist </a>
