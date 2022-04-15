@@ -13,20 +13,20 @@ _Template modelled from capstone guidelines._
 * Relevant: YES. We care about the cost of our online shopping? 
 * Time-bound: YES: We have to select the period/ years we wish to model. 
 
-## _Data: Sources_
+## Data: _CA Enviornmental_
 
-|Source                            | File     | Date  |
-|---                               | ---                  | ---   |
+ Source                                                      | File          | Date  |
+ ---                                                         | ---           | ---   |
+ <a href = "https://data.ca.gov/dataset/calenviroscreen-2-0"> CalEnviroScreen 2 </a> |  <a href = "https://oehha.ca.gov/media/downloads/calenviroscreen/report/ces20updateoct2014.xlsx"> Data (xlsx) </a> | Oct 2014 
+<a href = "https://oehha.ca.gov/calenviroscreen/report/calenviroscreen-30"> CalEnviroScreen 3 </a>  | <a href =  "https://oehha.ca.gov/media/downloads/calenviroscreen/document/ces3results.xlsx"> Data (xlsx) </a>     | June 2018 
+ <a href = "https://calenviroscreen-oehha.hub.arcgis.com"> CalEnviroScreen 4 </a> | <a href = "https://calenviroscreen-oehha.hub.arcgis.com"> Data, Dictionarty ZIP </a>| Oct 2021 
 
-|<a href = "https://data.ca.gov/dataset/calenviroscreen-2-0"> CalEnviroScreen 2 </a>     |  <a href = "https://oehha.ca.gov/media/downloads/calenviroscreen/report/ces20updateoct2014.xlsx"> Data (xlsx) </a> | Oct 2014  |
-
-
-|<a href = "https://oehha.ca.gov/calenviroscreen/report/calenviroscreen-30"> CalEnviroScreen 3 </a>  | <a href =  "https://oehha.ca.gov/media/downloads/calenviroscreen/document/ces3results.xlsx"> Data (xlsx) </a>     | June 2018 |
-
-
-|<a href = "https://calenviroscreen-oehha.hub.arcgis.com"> CalEnviroScreen 4 </a> | <a href = "https://calenviroscreen-oehha.hub.arcgis.com"> Data, Dictionarty ZIP </a>| Oct 2021  |
-
-
+## Data: _Fulfilment Center Locations_
+Fulfilment  | Centers
+---         | --- 
+<a href = "https://www.mwpvl.com/html/amazon_com.html"> amazon  </a> | 
+<a href = "https://www.mwpvl.com/html/walmart.html"> walmart </a> |  
+<a href = "https://www.mwpvl.com/html/target.html"> target </a> | 
 
 > **Dataset Description:** Data Desccribe 
 
@@ -68,8 +68,13 @@ Always focus on the positive (it's not what you did wrong, it's what you look fo
 Is your model ready for production? Probably not, but you can comment on how it might get there.
 Does this project demonstrate skills that you think could be applied to similar problems?
 
----
-### ADDENDUM: make reusable functions
+> ### LINKS 
+* <a href ="https://www.epi.org/publication/unfulfilled-promises-amazon-warehouses-do-not-generate-broad-based-employment-growth/"> EPI: Warehouses Do Not Generate Broad-Based Employment </a> (cites the source I have for fulfillment center locations)
+* <a href = https://www.cbre.com/insights/local-response/2022-north-america-industrial-big-box-los-angeles-county> CBRE: 2022 North America Industrial Big Box Review & Outlook: Los Angeles County</a>
+> 
+
+--- 
+### ADDENDUM: _make reusable functions_
 Writing code in functions serves many purposes, but for the purpose of these projects I want to focus on two.
 
 Writing functions to perform individual tasks will clarify, to you as well as the reader, what each line of code is doing. Just like how we use separate notebooks to allow readers to keep distinct tasks separated in their minds, functions can serve an identically helpful organizational purpose.
@@ -84,8 +89,8 @@ When you are interviewing, you will absolutely be expected to write functions si
 | monday | tuesday | wednesday | thursday | friday | saturday | sunday
 |--------|---------|-----------|----------|--------|----------|--------
 | 11     | 12      | 13        | 14       | 15     | 16       | 17 
-| /      | /       |           |          |        |          | MTG
-| /      | /       |           |          |        |          | Final Data Select
+| /      | /       |  /        |   /      |   /    |          | MTG
+| /      | /       |  /        |   /      |   /    |          | Final Data Select
 | 18     | 19      | 20        | 21       | 22     | 23       | 24 
 |        |         |           |          |        |          | MTG
 |        |         |           |          |        |          | Final Models
@@ -94,4 +99,4 @@ When you are interviewing, you will absolutely be expected to write functions si
 |        |         |Final Edits           |          |        |          | 
 
 
-> ### <a href = "https://docs.google.com/spreadsheets/d/1ANNmWiE-c8f3_PcVUyNqUl5LC-RZKtLLuI6cJGyq0Hc/edit?usp=sharing"> Timeline/ Checklist </a>
+> ### Link: <a href = "https://docs.google.com/spreadsheets/d/1ANNmWiE-c8f3_PcVUyNqUl5LC-RZKtLLuI6cJGyq0Hc/edit?usp=sharing"> Timeline/ Checklist </a>
