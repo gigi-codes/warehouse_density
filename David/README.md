@@ -119,3 +119,8 @@ To do:
     - added naics2017.txt to raw_data
     - saved a copy as naics2017_UTF8.txt to read
     - making a new notebook, NAICS, to look at it for some reason. It's practice.
+    
+	- G looked through the CBP data page. It really seems like the right data. It is divided into congressional districts, zip codes, and counties. They don't all have the same information --- but we ought to be able to link them together.
+    - G downloading and looking over 2013 data.
+- downloaded .zips for all CBP and ZBP datas 2012 through 2019. This hopefully covers all the data we'll ever need. I may unzip only as needed, and try to remember to add the unzipped file to .gitignore. unzipping one of the ZBP increased it from ~30MB to ~110MB --- don't wanna go over GitHub's limits.
+- feeling like we have a project here.
