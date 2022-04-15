@@ -87,7 +87,7 @@ To do:
 - read "a multivariate analysis of cal enviroscreen..."
 - collect references in the two above --- news articles, papers
 
-- I have no clue how Markdown/jupyter decides how to color these things. What's going on with this green one down there!
+- I have no clue how Markdown/jupyter decides how to color these things. What's going on with this green ones down there! Why aren't they all blue like above? Is it the links? 
 
     - read and shared a couple articles
         - used [this article](https://www.pe.com/2021/09/29/inland-empire-is-warehouse-central-but-how-did-it-happen) to find a couple of the statista sets [number of big box warehouses](https://www.statista.com/statistics/757252/number-of-big-box-buildings-inland-empire/) and [area of big box warehouses](https://www.statista.com/statistics/757290/existing-space-size-of-big-box-buildings-inland-empire-ca/) and [vacancy rate of big box warehouses](https://www.statista.com/statistics/757309/vacancy-rate-of-big-box-buildings-inland-empire-ca/) in the Inland Empire. These sets look like garbage --- only a number for each year from 2009 to 2020. The site hides the sources behind its paywall.
@@ -105,8 +105,17 @@ To do:
         - these include industry codes, which could allow us to filter out the storage facilities
         - I'm glad it made this green in jupyter because it's important.
     - [Census Industry Classifications](https://www2.census.gov/programs-surveys/cbp/technical-documentation/reference/naics-descriptions/naics2017.txt)
-        
+    
 - combine the data sets by tract
 - get statistics by types, groupbys. pivot table?
     
 ---
+---
+4/15
+---
+
+- quick meet -- G will poke around the FTP server and API
+- census industry codes
+    - added naics2017.txt to raw_data
+    - saved a copy as naics2017_UTF8.txt to read
+    - making a new notebook, NAICS, to look at it for some reason. It's practice.
