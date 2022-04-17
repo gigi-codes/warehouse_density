@@ -133,3 +133,7 @@ To do:
 Looking at Gs aggregate EDA. Differences in distributions for the emergency room visits. low birth weights and heart attack ED visits are striking.
 
 Called [my sis](https://www.linkedin.com/in/smtbrokaw/) to ask about lifestyle diseases and wildfires. Asked about striking changes in these emergency room visits after 2015. She focused on diabetes in Montana, but is well aware of wildfire PM and other environmental risks to other long term diseases. She said these kinds of changes were observed in MT, but agreed it's strange that heart disease went up rather than asthma first if we're attributing the change to PM2.5 and other air pollutants.
+
+unpacked the zbp19 data and added the expanded file to .gitignore.
+
+familiarizing myself with zbp19 data, writing in [this notebook](./2_zbpandcbpData.ipynb)
