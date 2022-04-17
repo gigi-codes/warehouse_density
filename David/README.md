@@ -124,3 +124,12 @@ To do:
     - G downloading and looking over 2013 data.
 - downloaded .zips for all CBP and ZBP datas 2012 through 2019. This hopefully covers all the data we'll ever need. I may unzip only as needed, and try to remember to add the unzipped file to .gitignore. unzipping one of the ZBP increased it from ~30MB to ~110MB --- don't wanna go over GitHub's limits.
 - feeling like we have a project here.
+
+---
+---
+4/17
+---
+
+Looking at Gs aggregate EDA. Differences in distributions for the emergency room visits. low birth weights and heart attack ED visits are striking.
+
+Called [my sis](https://www.linkedin.com/in/smtbrokaw/) to ask about lifestyle diseases and wildfires. Asked about striking changes in these emergency room visits after 2015. She focused on diabetes in Montana, but is well aware of wildfire PM and other environmental risks to other long term diseases. She said these kinds of changes were observed in MT, but agreed it's strange that heart disease went up rather than asthma first if we're attributing the change to PM2.5 and other air pollutants.
