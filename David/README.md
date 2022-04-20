@@ -137,3 +137,14 @@ Called [my sis](https://www.linkedin.com/in/smtbrokaw/) to ask about lifestyle d
 unpacked the zbp19 data and added the expanded file to .gitignore.
 
 familiarizing myself with zbp19 data, writing in [this notebook](./2_zbpandcbpData.ipynb)
+
+---
+---
+4/20
+---
+
+Meeting this morning. I will add up business data by zip code and export a CSV. I agreed to make a sample with my expected format.
+
+Others will work on merging the data from at least the CAES 3 and 4 sets, but maybe 1, 2, 3, and 4 for some critical columns (health related, basic pollution)
+
+The set of zip codes is different from CAES to CAES. Zip codes apparently change often, with 10-20 being added each year. The majority are in overlap, so we could just do an inner join with these.
