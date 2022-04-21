@@ -2,15 +2,17 @@
 
 this folder contains two files, each with a single dictionary.
 
-to save these as variables in a notebook, import with json:
+to save these as variables in a notebook, import with json. You'll have to change `file_path` first.
 ```python
 import json
 
-tract_to_zip_filepath = '../path/to/CA_zip_tract_translation/' + 'tract_to_zip.json'
+file_path = '../path/to/CA_zip_tract_translation/'
+
+tract_to_zip_filepath = file_path + 'tract_to_zip.json'
 with open (tract_to_zip_dict_filepath, 'r') as my_ttz_file:
     tract_to_zip = json.load(my_ttz_file)
 
-zip_to_tract_filepath = '../path/to/CA_zip_tract_translation/' + 'zip_to_tract.json'
+zip_to_tract_filepath = file_path + 'zip_to_tract.json'
 with open (zip_to_tract_filepath, 'r') as my_ztt_file:
     zip_to_tract = json.load(my_ztt_file)
 ```
