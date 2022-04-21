@@ -1,6 +1,12 @@
 .DS_Store
 
 
+#################
+# DATA --- the unzipped cbp and zbp data in raw_data. (Find a better way to do this rather than explicitly including every file?)
+
+raw_data/cbp19/zbp19detail.txt
+#################
+
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
 
