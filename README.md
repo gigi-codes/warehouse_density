@@ -1,15 +1,20 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Health Outcomes: Proximity to Online-Shopping Distribution Hubs
 ---
 _Template modelled from capstone guidelines._
+# NOTES: 
+* I messed up david's initial EDA notebook trying to add my last name. Don't know how to fix it right now, but can confirm previous versions ARE saved and accessible via github's version /revision history. Will look into this later. 
+* I try to keep this README updated with our combined data sources and work, will add links to all the ZIP code/census data David has added by year, or just append to tables below. 
+* Thank you for the ZIP translations @David: 
+* Thank you for the combined ES file @ Marshall: 
+* I will concact these files tomorrow and plot on tableau to see if we can share something pretty for our presenation, or on tableau itself. Even before the modelling, combining all the years into an 'interactive' map is really good work we can be proud to share.
+* Won't be in class but have some free time in the AM. 
 
-## Does increase in _NOx_, _SOx_, _PPMx_ predict incidence of _asthma_, _COPD_ or related disease? 
-> * SPECIFIC-select: 
->    * diseases
->    * emissions
->    * time frame
->    * location(s)
-* MEASURABLE: incidence before, after specified time period. 
-* Achievable: can we get the data? 
+## Model health outcomes given traffic volumes, density of warehouse/fulfilment centers. 
+> * Specifically rate of hospitalization per 10,000 for: 
+>    * asthma
+>    * cardiovascular
+> * Also lso _low birth weight_ 
+* MEASURABLE: incidence change over four time periods 
 * Relevant: YES. We care about the cost of our online shopping? 
 * Time-bound: YES: We have to select the period/ years we wish to model. 
 
