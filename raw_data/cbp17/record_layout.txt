@@ -1,0 +1,107 @@
+Record Layout 2017-
+
+Combine[YR].txt
+
+                                
+Note:  In the filenames, [YR] is the 2-digit data year.
+       Each data field is separated by comma (,) delimiters.
+
+       
+County Business Patterns (CBP)
+Nonemployer Statisitcs (NES)
+
+
+Field           Data  
+Name            Type    Description
+
+ST        	C       State FIPS Code
+
+SDSCR		C	State Description
+
+CTY 	        C       County FIPS Code
+
+CTYDSCR		C	County Description
+
+NAICS  		C       Industry Code:  2- through 4-digit NAICS code
+       
+NCSDSCR  	C	Industry Code Description
+           
+CESTAB		C	Total CBP and NES Establishments
+
+			S: data withheld to avoid disclosure
+			N: data are not published or collected at this geography or industry detail by this program
+
+CBP_PCT		C	(CBP Establishments)/(Total CBP and NES Establishments) X 100
+
+			S: data withheld to avoid disclosure
+			N: data are not published or collected at this geography or industry detail by this program
+
+NES_PCT		C	(NES Establishments)/(Total CBP and NES Establishments) X 100
+
+			S: data withheld to avoid disclosure
+			N: data are not published or collected at this geography or industry detail by this program
+
+EST             C       CBP Establishments
+
+			N: data are not published or collected at this geography or industry detail by this program
+
+EMP             C       CBP Employment, including March 12th
+			 
+                        Employment Range Flag. This denotes employment size class for data withheld to avoid disclosure (confidentiality) 
+                        or withheld because data do not meet publication standards.
+ 
+                                a       0-19 employees
+                                b       20-99 employees
+                                d       100-249 employees
+                                e       250-499 employees
+                                f       500-999 employees
+                                g       1,000-2,499 employees
+                                h       2,500-4,999 employees
+                                i       5,000-9,999 employees
+                                j       10,000-24,999 employees
+                                k       25,000-49,999 employees
+                                l       50,000-99,999 employees
+                                m       100,000 or more employees
+				S	Withheld because estimate did not meet publication standards. Employment or payroll field set to zero
+
+				N	Data are not published or collected at this geography or industry detail by this program
+
+EMP_NF          C       CBP Employment Noise Flag (see Noise Flag definitions below)
+
+QP1             C       CBP First Quarter Payroll (in thousands)
+
+			S:  data withheld to avoid disclosure
+			N: data are not published or collected at this geography or industry detail by this program
+
+QP1_NF          C       CBP First Quarter Payroll Noise Flag (see Noise Flag definitions below)
+
+AP              C       CBP Annual Payroll (in thousands)
+
+			S:  data withheld to avoid disclosure
+			N: data are not published or collected at this geography or industry detail by this program
+                                                              
+AP_NF           C       CBP Annual Payroll Noise Flag (see Noise Flag definitions below) 
+
+ESTAB           C       NES Establishments
+
+			S:  data withheld to avoid disclosure
+			N: data are not published or collected at this geography or industry detail by this program
+
+RCPTOT          C       NES Receipts (in thousands)
+
+			S:  data withheld to avoid disclosure
+			N: data are not published or collected at this geography or industry detail by this program
+
+RCPTOT_N_F      C       NES Receipts Noise Flag (see Noise Flag definitions below)
+
+
+
+NOTE: Noise Flag definitions are:
+
+        G       0 to < 2% noise (low noise)
+        H       2 to < 5% noise (moderate noise)
+	J	>= 5% noise (high noise)
+        S	Withheld because estimate did not meet publication standards
+
+	N	Data are not published or collected at this geography or industry detail by this program
+
