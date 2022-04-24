@@ -148,3 +148,24 @@ Meeting this morning. I will add up business data by zip code and export a CSV. 
 Others will work on merging the data from at least the CAES 3 and 4 sets, but maybe 1, 2, 3, and 4 for some critical columns (health related, basic pollution)
 
 The set of zip codes is different from CAES to CAES. Zip codes apparently change often, with 10-20 being added each year. The majority are in overlap, so we could just do an inner join with these.
+
+made a pair of dicts that translate between zip codes and tracts
+
+---
+---
+4/21
+---
+gonna make a thing
+
+---
+---
+4/22
+---
+
+Met this morning, sorted more git problems. we merged extra branches to main and agreed to just push and pull from main.
+
+Still planning on making a thing.
+
+GG and MC have been working with CAES data directly. exporting a single consolidated file. Looking at that now.
+
+Looks cool. gonna finally make that zip-warehouse counter.
