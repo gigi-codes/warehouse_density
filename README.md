@@ -1,21 +1,40 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Health Outcomes: Proximity to Distributions Hubs
 ---
-_Template modelled from capstone guidelines._
+
+> #  TO DO 
+> * CLEAN `all_processed` file in `processed_data` directory: 
+>   * all four ES datasets
+>   * warehouse-data for 4 years from census 
+>   * still has `NaN`, etc. but otherwise ready for modelling
+> * SLLIDES 
+> * CLEAN UP `REPOSITORY`
+>   * I am happy to volunteer to do this: 
+>       * one directory with all our sheets, renumbered
+>       * remove superflous direcetories 
+>       * I've had a mini-TOC at the top of each of my nb for previous projects, I can do this for ours as well 
+
 > # NOTES
->* I messed up <b>David's</b> initial EDA notebook trying to add my last name. Don't know how to fix it right now, but can confirm previous versions ARE saved and accessible via github's version /revision history. Will look into this later. 
-> * I try to keep this README updated with our combined data sources and work, will add links to all the ZIP code/census data David has added by year, or just append to tables below. 
-> * Thank you for the ZIP translations `@David`
-> * Thank you for the combined ES file `@Marshall` - I've shared a new one that has zip for ALL in directory `processed_data`, so we can concact/ append/join David's set. 
+> #### _4/24_
+> * `processed_data` directory has all files ready for `imputing`, etc. 
+> * `05_merged` nb in `Giovanna` directory has some initial EDA
+>
+> #### _4/22_ 
+> * I messed up <b>David's</b> initial EDA notebook trying to add my last name. Don't know how to fix it right now, but can confirm previous versions ARE saved and accessible via github's version /revision history. Will look into this later. 
+
+---
+---
+---
+
 
 ## Model health outcomes given traffic volumes, density of warehouse/fulfilment centers
 * Predict 2021 given 2013, 2014, 2018 data? 
 * Specifically rate of hospitalization per 10,000 for: 
     * asthma
-    * cardiovascular
     * _low birth weight_ ?
 * MEASURABLE: incidence change over four time periods 
 * Relevant: YES. We care about the cost of our online shopping? 
-* Time-bound: YES: We have to select the period/ years we wish to model. 
+* Time-bound: YES: We have to select the period/ years we wish to model.
+* NOVEL: really good work, David, in compiling # of warehouses !!! 
 
 ## _Target? Goal_
 We are 
@@ -48,10 +67,10 @@ Data dictionary (describe every feature in your data set, or at least those feat
 
 variable name   | Type      | Description 
 ---             | ---       | ---   
-asthma          | numeric   | incidence rate, cases/ 100 population
+asthma          | numeric   | incidence rate, cases/ 10k population
 cardiovasccular | numeric   | incidence rate, cases/ 100 population
-low birth weight| numeric   | rate? 
-diesel pm       | numeric   | particulate matter, particles per million 
+low birth weight| numeric   | % born `< 2500 g`
+diesel pm       | numeric   | particulate matter, spatially modelled
 ozone           | numeric   | concentration
 traffic         | numeric   | volume: vehicles per length of time over fixed distance
 
