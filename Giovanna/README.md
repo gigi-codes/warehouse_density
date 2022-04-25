@@ -1,12 +1,16 @@
 
 > # TO DO: 
-- get lat/long/city/county from zip for ES1
-- Find change in `ozone`, `birth weight` reporting to ensure metrics are on same scale
-- modify data given above findings
-- ~~compile all 4 datasets together~~
-- NO: David has better data ~~extract distribution center list from that site~~
-- ~~clean data sets for premlim LR
+- clean data sets for premlim LR
 - clean data sets for prelim NN
+
+> ### 4/24
+- ~~Find change in `ozone`, `birth weight` reporting to ensure metrics are on same scale~~
+- ~~modify data given above findings~~
+- NO: David has better data ~~extract distribution center list from that site~~
+
+## 4/23??
+- ~~get lat/long/city/county from zip for ES1~~
+- ~~compile all 4 datasets together~~
 
 > ### 4/22
 * cleaned up ES2: extracted city, zip, lat long from one location 
