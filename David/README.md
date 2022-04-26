@@ -169,3 +169,16 @@ Still planning on making a thing.
 GG and MC have been working with CAES data directly. exporting a single consolidated file. Looking at that now.
 
 Looks cool. gonna finally make that zip-warehouse counter.
+
+
+---
+---
+4/24
+---
+warehouse types counted by zip. that's in `processed_data/business_counts_by_zip/`
+
+---
+---
+4/25
+---
+The zip-warehouse counter was used by others to make a merged set. Made some initial linear regressions with each of the health data. These are just with time and space, just with warehouse counts, and with most of the physical measurements including warehouse counts and pollution levels.
