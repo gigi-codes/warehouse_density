@@ -87,4 +87,4 @@ Methodology for why certain models were choosen.
    Let's make it happen and leave no doubt that the beautiful beaches, mountains, and valleys stay pure and continue to bring joy not health issues to our wonderful citizens. We have the chance to change and impact future generations and policy makers accross the globe. 
 
 
-Model 	XGBoost reg| features used alot of them and I dont know if the formatting is going to be messed up| type 	| evaluation metric 	| result 
+Model 	XGBoost reg| features used alot of them and I dont know if the formatting is going to be messed up| type XGBoost is an efficient implementation of gradient boosting that can be used for regression predictive modeling	| evaluation metric Accuracy, r_2 score, & RMSE metric	| result Train Accuracy: 0.9472151826696329 Test Accuracy:  0.7639090300436409 RMSE score: 14.376141 r_2 score: 
