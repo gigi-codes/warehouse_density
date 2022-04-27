@@ -1,6 +1,6 @@
 # SECOND, MODIFIED MODULE
 
-# takes FOUR (3) args: clean, numeric, dummified (X, y) and train_size (0-1), and leaf depth 
+# takes FOUR (4) args: clean, numeric, dummified (X, y) and train_size (0-1), and leaf depth 
 # runs model, prints and returns 6 errors and feature importances
 
 # checks LINE assumptions, returns plots 
@@ -15,6 +15,7 @@ import seaborn as sns
 plt.style.use('gstyle.mplstyle') 
 
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.svm import SVR
 
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
@@ -23,8 +24,8 @@ from sklearn import metrics
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import PolynomialFeatures
 
-##### FUNCTION DEF #####  --- --- --- --- --- --- --- --- --- --- --- ---
-def allmet(X, y, t_size, m_d):
+##### RF FUNCTION DEF #####  --- --- --- --- --- --- --- --- --- --- --- ---
+def gs_rf(X, y, t_size, m_d):
 
 	X = X
 	y = y 
@@ -39,8 +40,8 @@ def allmet(X, y, t_size, m_d):
 	
 	
 	# fit
-	rfc = RandomForestRegressor(max_depth=m_d, random_state=0)
-	rfc.fit(X_train, y_train)
+	rf = RandomForestRegressor(max_depth=m_d, random_state=0)
+	rf.fit(X_train, y_train)
 			
 # 		RandomForestClassifier(bootstrap=True, class_weight=None, criterion='entropy',
 #                        max_depth=None, max_features='auto', max_leaf_nodes=None,
@@ -51,12 +52,12 @@ def allmet(X, y, t_size, m_d):
 #                        warm_start=False)
 
 	# Features Importances
-	rfc_coef_df = pd.DataFrame({
+	rf_coef_df = pd.DataFrame({
         'Feature' : X.columns,
-        'Importances'   : rfc.feature_importances_})
+        'Importances' : rf.feature_importances_})
 		
 	# making predictions to get residuals  
-	predictions = rfc.predict(X)
+	predictions = rf.predict(X)
 	residuals = y - predictions
 	
 	# errors 
@@ -66,7 +67,7 @@ def allmet(X, y, t_size, m_d):
 	mae = round(metrics.mean_squared_error(y, predictions),4)               # mean absolute error
 	mse = round(metrics.mean_squared_error(y, predictions),4)               # mean squared error  
 	r2 = round(metrics.r2_score(y, predictions), 4)                        	# coefficient of determination
-	r2xval = round(cross_val_score(rfc, X, y).mean(), 4)					# X-val score
+	r2xval = round(cross_val_score(rf, X, y).mean(), 4)					# X-val score
 	
 	my_metrics_s = ['r2', 'rss', 'max_e', 'rmse', 'mae', 'mse', 'r2xval']
 	my_metrics = [r2, rss, max_e, rmse, mae, mse, r2xval ]
@@ -75,21 +76,68 @@ def allmet(X, y, t_size, m_d):
 	'Metric':	my_metrics_s,
 	'Value':	my_metrics})
 	
-	return(rfc.base_estimator_, rfc_coef_df, lr_df)
-		
-# 	# --- LINE checks, plots with help from Jessely --- --- --- --- --- ---
+	# plot feature importances
+	pd.Series(rf.feature_importances_, X.columns).sort_values().plot(kind = 'barh');
+	
+	return(rf.base_estimator_, rf_coef_df, lr_df)
+	
+
+##### SVR FUNCTION #####  --- --- --- --- --- --- --- --- --- --- --- ---
+def gs_svr(X, y, t_size):
+
+	X = X
+	y = y 
+
+	# making model 
+	X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 42, train_size = t_size)
+	
+	# scale
+	sc = StandardScaler()
+	X_train = sc.fit_transform(X_train)
+	X_test = sc.transform(X_test)
+	
+	# fit	
+# 	svr = SVR()
+	svr = SVR(kernel="linear")
+	svr.fit(X_train, y_train)
+	
+	# MAKE PREDICTIONS, get residuals
+#	train_preds = svr.predict(X_train)
+	predictions = svr.predict(X)
+	residuals = y - predictions
+	
+# 		# making predictions to get residuals  
+# 	predictions = rf.predict(X)
+# 	residuals = y - predictions
 # 	
-# 	fig, ax = plt.subplots(nrows=1, ncols=3, sharey=False, figsize=(15, 6))
-# 	fig.suptitle('LINE Checks')
-# 	
-# 	# linearity
-# 	ax[0].set(xlabel='Target (Actual Price, $)', ylabel='Predictions')
-# 	sns.scatterplot(x= y , y=predictions, ax = ax[0], color = 'lightcoral').set(title='Linearity');
-# 	
-# 	#normality 
-# 	ax[1].set(xlabel='Frequency', ylabel='Residuals')
-# 	sns.histplot(x = residuals, ax = ax[1], color = 'lightcoral', bins = 50).set(title = 'Normality');
-# 	
-# 	# equal variance
-# 	ax[2].set(xlabel='Target', ylabel='Residuals')
-# 	sns.scatterplot(x= y , y = residuals, ax = ax[2], color = 'lightcoral').set(title = 'Equal Variance');
+	
+# 	# Features Importances
+# 	svr_coef_df = pd.DataFrame({
+#         'Feature' : X.columns,
+#         'Importances' : svr.coef_})
+	importen = svr.coef_
+        
+        	
+	# errors 
+	rss = round((residuals **2).sum(), 4)									# rss = sse 
+	max_e = round(metrics.max_error(y, predictions)  , 4)					# max error
+	rmse = round(np.sqrt(metrics.mean_squared_error(y, predictions)), 4)    # root mean squared error
+	mae = round(metrics.mean_squared_error(y, predictions),4)               # mean absolute error
+	mse = round(metrics.mean_squared_error(y, predictions),4)               # mean squared error  
+	r2 = round(metrics.r2_score(y, predictions), 4)                        	# coefficient of determination
+	r2xval = round(cross_val_score(svr, X, y).mean(), 4)					# X-val score
+	
+	svr_mets = ['r2', 'rss', 'max_e', 'rmse', 'mae', 'mse', 'r2xval']
+	my_metricss = [r2, rss, max_e, rmse, mae, mse, r2xval ]
+
+
+	svr_df = pd.DataFrame({
+	'Metric':	svr_mets,
+	'Value':	my_metricss})
+	
+	# plot feature importances
+	pd.Series(rf.feature_importances_, X.columns).sort_values().plot(kind = 'barh');
+	
+	
+	final_score = svr.score(X_train, y_train)
+	return(final_score, importen)
