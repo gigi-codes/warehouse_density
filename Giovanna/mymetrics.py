@@ -37,7 +37,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import PolynomialFeatures
 
 ##### RF FUNCTION DEF #####  --- --- --- --- --- --- --- --- --- --- --- ---
-def 
+def gs_rf(X, y, t_size, m_d):
 
 	X = X
 	y = y 
@@ -108,43 +108,53 @@ def gs_svr(X, y, t_size):
 	X_train = sc.fit_transform(X_train)
 	X_test = sc.transform(X_test)
 	
-	# fit	
+	print ('fitting model ... ')
 # 	svr = SVR()
 	svr = SVR(kernel="linear")
 	svr.fit(X_train, y_train)
-	
+
+	print ('predicting ... ')
 	# predictions, residuals
 #	train_preds = svr.predict(X_train)
 	predictions = svr.predict(X)
 	residuals = y - predictions
 	
 
-# 	# Features Importances
-# 	svr_coef_df = pd.DataFrame({
-#         'Feature' : X.columns,
-#         'Importances' : svr.coef_})
+	# Features Importances
+	svr_coef_df = pd.DataFrame({
+        'Feature' : X.columns,
+        'Importances' : svr.coef_[1]})
+
+	print ('--- calculating errors ... ')
+	print ('calculating  coefficients ... ')
 	importen = svr.coef_
         
 	# errors 
 	rss = round((residuals **2).sum(), 4)									# rss = sse 
+# 	print ('rss: ' + str(rss))
 	max_e = round(metrics.max_error(y, predictions)  , 4)					# max error
+# 	print ('max: ' + str(max_e))
 	rmse = round(np.sqrt(metrics.mean_squared_error(y, predictions)), 4)    # root mean squared error
+# 	print ('rmse: ' + str(rmse))
 	mae = round(metrics.mean_squared_error(y, predictions),4)               # mean absolute error
+# 	print ('mae: ' + str(mae))
 	mse = round(metrics.mean_squared_error(y, predictions),4)               # mean squared error  
+# 	print ('mse: ' + str(mse))
 	r2 = round(metrics.r2_score(y, predictions), 4)                        	# coefficient of determination
-	r2xval = round(cross_val_score(svr, X, y).mean(), 4)					# X-val score
+# 	print ('r2: ' + str(r2))
+
+	svr_mets = ['r2', 'rss', 'max_e', 'rmse', 'mae', 'mse']
+	my_metricss = [r2, rss, max_e, rmse, mae, mse]
 	
-	svr_mets = ['r2', 'rss', 'max_e', 'rmse', 'mae', 'mse', 'r2xval']
-	my_metricss = [r2, rss, max_e, rmse, mae, mse, r2xval ]
-
-
+	print ('--- All Metrics Calculated:  ')
 	svr_df = pd.DataFrame({
 	'Metric':	svr_mets,
 	'Value':	my_metricss})
 	
-	# plot feature importances
-	pd.Series(rf.feature_importances_, X.columns).sort_values().plot(kind = 'barh');
-	
+# 	print ('plotting feature importances ... ')	
+# 	# plot feature importances
+# 	pd.Series(rf.feature_importances_, X.columns).sort_values().plot(kind = 'barh');
 	
 	final_score = svr.score(X_train, y_train)
-	return(final_score, importen)
+	
+	return(final_score, importen, svr_df)
