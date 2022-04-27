@@ -86,3 +86,5 @@ Methodology for why certain models were choosen.
 
    Let's make it happen and leave no doubt that the beautiful beaches, mountains, and valleys stay pure and continue to bring joy not health issues to our wonderful citizens. We have the chance to change and impact future generations and policy makers accross the globe. 
 
+
+Model 	XGBoost reg| features used alot of them and I dont know if the formatting is going to be messed up| type 	| evaluation metric 	| result 
