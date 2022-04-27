@@ -1,29 +1,15 @@
-Best Model: XGBoost Regression Model | Features used: total population,ozone,
- 'pm2.5',
- 'diesel pm',
- 'pesticides',
- 'traffic',
- 'cleanup sites',
- 'groundwater threats',
- 'haz. waste',
- 'imp. water bodies',
- 'solid waste',
- 'pollution burden',
- 'low birth weight',
- 'education',
- 'linguistic isolation',
- 'poverty',
- 'pop. char. ',
- 'drinking water',
- 'tox. release',
- 'unemployment',
- 'ces_per',
- 'cardiovascular disease',
- 'housing burden',
- 'est total',
- 'est gen',
- 'est cold',
- 'est farm',
- 'est other' | type 	| evaluation metric 	| result 
+Best Model: XGBoost Regression Model | 
+
+Features used: total population, ozone, pm2.5, diesel pm, pesticides, traffic, cleanup sites, groundwater threats, haz. waste, imp. water bodies, solid waste, pollution burden, low birth weight, education, linguistic isolation, poverty, pop. char. , drinking water, tox. release, unemployment, ces_per, cardiovascular disease, housing burden, est total, est gen, est cold, est farm, est other | 
+
+type: XGBoost is an efficient implementation of gradient boosting that can be used for regression predictive modeling.	| 
+
+evaluation metric: Accuracy, r_2 score, & RMSE metric | 
+
+results: Train Accuracy: 0.9472151826696329
+         Test Accuracy:  0.7639090300436409 
+         RMSE score: 14.376141
+         r_2 score: 
+         
 --- 	| ---		| ---	| --- 			|
 

@@ -21,12 +21,15 @@ Needing structure on:
 - I merged together the Datasets from EnviroScreen but it did not include census and tract info like how Giovana and David collected.
 - understanding the impact of the census data. 
 4/18
-- Great processed dataset with all EnviroScreens and CEAS data. This is what I will use to model effectively. 
+- Great processed dataset created by group with all EnviroScreens and CEAS data. This is what I will use to model effectively. 
 - Lots of good learned process from the team with how to deal with missing data in this merged and processed dataset, I have a tendancy to drop and make similar which would ruin integrity. 
 
 4/20
 - I have regression models that are not great (.60 R2 roughly)
 - Have tried multiple different types of models, diving into GridSearch CV heavily and trying to tackle the XGboost Regression modle.
+
+4/23
+- Wrote executive summary and additions to the READ.md for the group.
 
 
 4/26
