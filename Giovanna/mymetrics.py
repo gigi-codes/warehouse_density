@@ -1,4 +1,16 @@
-# SECOND, MODIFIED MODULE
+# ---------------------------
+# module has two functions: 
+# 1: G's Random Forest Regressor
+# gs_rf(X, y, t_size, m_d)
+# 	X, y
+# 	t_size : train set size
+#	m_d: max_leaf_depth
+#
+# 2: G's 
+# gs_rf(X, y, t_size, m_d)
+# 	X, y
+# 	t_size : train set size
+#	m_d: max_leaf_depth
 
 # takes FOUR (4) args: clean, numeric, dummified (X, y) and train_size (0-1), and leaf depth 
 # runs model, prints and returns 6 errors and feature importances
@@ -25,7 +37,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import PolynomialFeatures
 
 ##### RF FUNCTION DEF #####  --- --- --- --- --- --- --- --- --- --- --- ---
-def gs_rf(X, y, t_size, m_d):
+def 
 
 	X = X
 	y = y 
@@ -101,23 +113,18 @@ def gs_svr(X, y, t_size):
 	svr = SVR(kernel="linear")
 	svr.fit(X_train, y_train)
 	
-	# MAKE PREDICTIONS, get residuals
+	# predictions, residuals
 #	train_preds = svr.predict(X_train)
 	predictions = svr.predict(X)
 	residuals = y - predictions
 	
-# 		# making predictions to get residuals  
-# 	predictions = rf.predict(X)
-# 	residuals = y - predictions
-# 	
-	
+
 # 	# Features Importances
 # 	svr_coef_df = pd.DataFrame({
 #         'Feature' : X.columns,
 #         'Importances' : svr.coef_})
 	importen = svr.coef_
         
-        	
 	# errors 
 	rss = round((residuals **2).sum(), 4)									# rss = sse 
 	max_e = round(metrics.max_error(y, predictions)  , 4)					# max error
