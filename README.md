@@ -1,40 +1,125 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Health Outcomes: Proximity to Distributions Hubs
----
-
+> # 4/26
 > #  TO DO 
-> * CLEAN `all_processed` file in `processed_data` directory: 
->   * all four ES datasets
->   * warehouse-data for 4 years from census 
->   * still has `NaN`, etc. but otherwise ready for modelling
-> * SLLIDES 
-> * CLEAN UP `REPOSITORY`
->   * I am happy to volunteer to do this: 
->       * one directory with all our sheets, renumbered
->       * remove superflous direcetories 
->       * I've had a mini-TOC at the top of each of my nb for previous projects, I can do this for ours as well 
+> * SLIDES 
+> * #### SLIDES
+> * ### SLIDES
+> * ## SLIDES
+> * # SLIDES
+> * # **SLIDES**
+> * CLEAN UP `REPOSITORY`, with following structure: 
+>    1. `code` directory with all notebooks
+>       * $TOC$ at top of each notebooks 
+>       1. combining all ES
+>       2. extracting from census
+>       3. combing ES + census 
+>       4. initial EDAs (4_1, 4_2, 4_3, etc.)
+>       5. David's LRs
+>       6. G's RFs, SVR, XGB
+>       7. Marshalls's XGB? 
+>       8. Final Model & Conclusion 
+>    2. `raw_data` 
+>       * ES data
+>       * census business survey 
+>    3. `processed_data`
+>    4. `ES` PDFs
+>    5. `other` PDFs, links, etc. 
+> 
+> <br>
+> 
+> * ~~CLEAN `all_processed` file in `processed_data` directory:~~
+>   * ~~all four ES datasets~~
+>   * ~~warehouse-data for 4 years from census~~ 
+
 
 > # NOTES
 > #### _4/24_
-> * `processed_data` directory has all files ready for `imputing`, etc. 
+> * `processed_data` directory has all files ready for `imputing`
 > * `05_merged` nb in `Giovanna` directory has some initial EDA
 >
 > #### _4/22_ 
-> * I messed up <b>David's</b> initial EDA notebook trying to add my last name. Don't know how to fix it right now, but can confirm previous versions ARE saved and accessible via github's version /revision history. Will look into this later. 
+> * $G$ messed up $David's$ initial EDA notebook trying to add my last name. Don't know how to fix it right now, but can confirm previous versions ARE saved and accessible via github's version /revision history. Will look into this later. 
 
 ---
 ---
 ---
 
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Health Outcomes Modeled Over Multiple CalEnviroScreen Reporting Periods
 
-## Model health outcomes given traffic volumes, density of warehouse/fulfilment centers
-* Predict 2021 given 2013, 2014, 2018 data? 
-* Specifically rate of hospitalization per 10,000 for: 
-    * asthma
-    * _low birth weight_ ?
+---
+## ***Summary***  We aggregated data from `four` <a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA CalEnviro Screen</a> reports, appended warehouse numbers from <a href = "link"> US Census Business Counts</a>  and trained `54` estimators to model health outcomes from collected data: `THE NN/XGB/RFR MODEL`, performed the best, accurately predciting `100%` of the health outcomes on `new data.` 
+---
+
+
+## Background 
+California Office of Environmental Health Hazard Assessment (<a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA</a>) has compiled data from various government agencies to create a mapping tool used to identifying communities most affected by various pollution sources, producing four reports total in years 2013, 2014, 2018 and 2021. 
+
+---
+## Data Acquisition & Cleaning 
+---
+### <b>Data:</b> CalEnviroScreen 
+**Description:** CA OEHHA compiles data specfically regarding pollutants and the communities affected by them. 
+
+
+ Source  | File  | Report Date  | Shape | 
+ ---     | ---   |  ---         |  ---  |
+ <a href = "https://oehha.ca.gov/calenviroscreen/report-general-info/calenviroscreen-10"> CalEnviroScreen 1 </a> |  <a href = "https://github.com/gigi-codes/CO2_modelling/blob/g_branch/raw_data/calenviroscreendatav11.xls"> Data (xlsx) </a> | April 2013 | FILLIN |
+ <a href = "https://data.ca.gov/dataset/calenviroscreen-2-0"> CalEnviroScreen 2 </a> |  <a href = "https://oehha.ca.gov/media/downloads/calenviroscreen/report/ces20updateoct2014.xlsx"> Data (xlsx) </a> | Oct 2014 | (8035, 51) |
+ <a href = "https://oehha.ca.gov/calenviroscreen/report/calenviroscreen-30"> CalEnviroScreen 3 </a>  | <a href =  "https://oehha.ca.gov/media/downloads/calenviroscreen/document/ces3results.xlsx"> Data (xlsx) </a>     | June 2018 |  (8035, 51) |
+ <a href = "https://calenviroscreen-oehha.hub.arcgis.com"> CalEnviroScreen 4 </a> | <a href = "https://calenviroscreen-oehha.hub.arcgis.com"> Data, Dictionarty ZIP </a>| Oct 2021 |  (8035, 51) |
+ |   | |  Combined Data   | (25444, 62) |
+ |   | |   **Used Data**   | (14912, 59) |
+
+
+ * `ozone` data from CalEnviroScreen (CAES) 4: converted from yearly units to daily units
+ * `low birth rate` in CAES 2: converted from fraction to percent
+ * `others` ? 
+
+ * `99%` of observations were ommitted: 
+    * feature/column only reported for one year
+    * `Nan` were `DROPPED` `FILLED WITH MEDIAN`
+ 
+<br>
+
+### <b>Data:</b> US Census Business Survey: Warehouse Counts, Density
+**Description:**  The US Census counts ... 
+
+<a href = "https://www2.census.gov/programs-surveys/cbp/datasets/"> US Census Bureau  </a> 
+<a href = " "> Data Descriptions </a> Datasets were collected from 
+
+datasets: 
+
+year(s) | name/link     | description                  | size 
+---     | ---           | ---                          | ---
+2012    |   xxx         |  business by type in county  | row x col 
+2012    |   xxx         |  business counts by zip      | row x col 
+
+
+name        | description 
+---         | --- 
+est total   | total number of warehouses in class 
+est ag      | total number of warehouse for agricultural 
+
+
+### Additional cleaning steps: 
+* filled medians? 
+
 * MEASURABLE: incidence change over four time periods 
 * Relevant: YES. We care about the cost of our online shopping? 
 * Time-bound: YES: We have to select the period/ years we wish to model.
 * NOVEL: really good work, David, in compiling # of warehouses !!! 
+
+### Data: _Dictionary for Model Features_
+
+
+variable name   | Type      | Description 
+---             | ---       | ---   
+asthma          | numeric   | incidence rate, cases/ 10k population
+cardiovasccular | numeric   | incidence rate, cases/ 100 population
+low birth weight| numeric   | % newborns weighing `< 2500 g`
+diesel pm       | numeric   | particulate matter, spatially modelled
+ozone           | numeric   | concentration
+traffic         | numeric   | volume: vehicles per length of time over fixed distance
+traffic         | numeric   | volume: vehicles per length of time over fixed distance
 
 ## _Target? Goal_
 We are 
@@ -44,56 +129,22 @@ We are
 * using (un)/supervised neural network to
 * model health outcomes  
 
----
-## Data: _CA Enviornmental & Health_
-
- Source                                                      | File          | Date  |
- ---                                                         | ---           | ---   |
- <a href = "https://oehha.ca.gov/calenviroscreen/report-general-info/calenviroscreen-10"> CalEnviroScreen 1 </a> |  <a href = "https://github.com/gigi-codes/CO2_modelling/blob/g_branch/raw_data/calenviroscreendatav11.xls"> Data (xlsx) </a> | April 2013 
-
- <a href = "https://data.ca.gov/dataset/calenviroscreen-2-0"> CalEnviroScreen 2 </a> |  <a href = "https://oehha.ca.gov/media/downloads/calenviroscreen/report/ces20updateoct2014.xlsx"> Data (xlsx) </a> | Oct 2014 
-<a href = "https://oehha.ca.gov/calenviroscreen/report/calenviroscreen-30"> CalEnviroScreen 3 </a>  | <a href =  "https://oehha.ca.gov/media/downloads/calenviroscreen/document/ces3results.xlsx"> Data (xlsx) </a>     | June 2018 
- <a href = "https://calenviroscreen-oehha.hub.arcgis.com"> CalEnviroScreen 4 </a> | <a href = "https://calenviroscreen-oehha.hub.arcgis.com"> Data, Dictionarty ZIP </a>| Oct 2021 
- 
-**Dataset Description:** data from State of California including health outcomes, zip codes, traffic volumes, and hospitalization rates. Dictionaries below. 
-
-## Data: _Warehouse Density_
-<a href = "https://www2.census.gov/programs-surveys/cbp/datasets/"> US Census Bureau  </a> 
-<a href = " "> Data Descriptions </a> 
-
-
-
-## Data: _Dictionaries_
-Data dictionary (describe every feature in your data set, or at least those features that were prominent in your final model)
-
-variable name   | Type      | Description 
----             | ---       | ---   
-asthma          | numeric   | incidence rate, cases/ 10k population
-cardiovasccular | numeric   | incidence rate, cases/ 100 population
-low birth weight| numeric   | % born `< 2500 g`
-diesel pm       | numeric   | particulate matter, spatially modelled
-ozone           | numeric   | concentration
-traffic         | numeric   | volume: vehicles per length of time over fixed distance
-
 
 ## _Exploratory Data Analyses_ 
-Consider including a plot or two from your EDA
+
+<img src = " " > INCLUDE CORR MATRIX IMAGES HERE
 
 ---
 ## _Model Performance_ 
-* Model performance on training/test data
-* Did you fit many models? Feel free to summarize some of your scores here.
-* Consider useing a markdown table to make results easy to review.
-* It should be clear which model you chose for production and why.
-
-> PLACEHOLDER TABLE FOR RESULTS 
 
 Model   | Transformer       | Regularization        | $n$  | Train   
 ---     |---                | ---                   | ---  | ---     
-1       | Linear Regression | Logistic Regressor    | 2605 | 0.7373  
-2       | Count Vectorizer  | Logistic Regressor    | 4537 | 0.7111  
-3       | Count Vectorizer  | Random Forest	        | 4537 | 0.7569  
+1       | Linear Regression | Logistic Regressor    | 14000 | 0.7373  
+2       | Random Forest Regressor  | none   | 14000 | 0.55
+3       | SVR | None	        | 1400 | 0.44 
 
+Include Feature Importances Plot here from RFR
+<img src = " ">
 
 ## _Model Selection and Findings_
 Primary findings/conclusions/recommendations
@@ -119,14 +170,6 @@ Does this project demonstrate skills that you think could be applied to similar 
 * <a href = https://www.cbre.com/insights/local-response/2022-north-america-industrial-big-box-los-angeles-county> CBRE: 2022 North America Industrial Big Box Review & Outlook: Los Angeles County</a>
 > 
 
---- 
-### ADDENDUM: _make reusable functions_
-Writing code in functions serves many purposes, but for the purpose of these projects I want to focus on two.
-
-Writing functions to perform individual tasks will clarify, to you as well as the reader, what each line of code is doing. Just like how we use separate notebooks to allow readers to keep distinct tasks separated in their minds, functions can serve an identically helpful organizational purpose.
-When you are interviewing, you will absolutely be expected to write functions since that is how code is, in practice, written and used. It is genuinely a very important part of writing code.
-
----
 ---
 
 > ## Data Dictionaries, _cont._
@@ -226,4 +269,3 @@ When you are interviewing, you will absolutely be expected to write functions si
 | H                             | 2 to < 5% noise (medium noise)                                                                                   |   |
 | D                             | Withheld to avoid disclosing data for individual companies; data are included in higher level totals. Employment or payroll field set to zero. |    |
 | S                             | Withheld because estimate did not meet publication standards. Employment or payroll field set to zero.           |   |
-
