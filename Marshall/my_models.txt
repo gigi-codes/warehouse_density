@@ -13,3 +13,5 @@ results: Train Accuracy: 0.9472151826696329
          
 --- 	| ---		| ---	| --- 			|
 
+
+Model 	| features used | type 	| evaluation metric 	| result 
