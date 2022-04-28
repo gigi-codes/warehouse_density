@@ -137,14 +137,29 @@ We are
 ---
 ## _Model Performance_ 
 
+> ### Giovanna: Random Forest & SVR 
+
 Model   | Transformer       | Regularization        | $n$  | Train   
 ---     |---                | ---                   | ---  | ---     
 1       | Linear Regression | Logistic Regressor    | 14000 | 0.7373  
 2       | Random Forest Regressor  | none   | 14000 | 0.55
 3       | SVR | None	        | 1400 | 0.44 
 
+
+
 Include Feature Importances Plot here from RFR
 <img src = " ">
+
+> ### Marshall: XGBOOST: table hidden for now, truncate values on accuracy scores
+
+<!-- reinclude after truncating values 
+| Model         | features used                                                                                                                                                                                                                                                                                                                                                                             | type                                    | evaluation metric           | Train Accuracy     | Test Accuracy      | RMSE score | r_2 score |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|-----------------------------|--------------------|--------------------|------------|-----------|
+| XGBoost       | total population, ozone, pm2.5, diesel pm, pesticides, traffic, cleanup sites, groundwater threats, haz. waste, imp. water bodies, solid waste, pollution burden, low birth weight, education, linguistic isolation, poverty, pop. char. , drinking water, tox. release, unemployment, ces_per, cardiovascular disease, housing burden, est total, est gen, est cold, est farm, est other | gradient boosting supervised regression | Accuracy, r_2 score, & RMSE | 0.9472151826696329 | 0.7639090300436409 | 14.376141  | 0.7       |
+| Random Forest | total population, ozone, pm2.5, diesel pm, pesticides, traffic, cleanup sites, groundwater threats, haz. waste, imp. water bodies, solid waste, pollution burden, education, linguistic isolation, poverty, pop. char. , drinking water, tox. release, unemployment, ces_per, housing burden, est total, est gen, est cold, est farm, est other                                           | meta estimator regression               | Accuracy, r_2 score, & RMSE | 0.9631357268516347 | 0.7488496371839088 | 14.739432  | 0.6       |
+|               |                                                                                                                                                                                                                                                                                                                                                                                           |                                         |                             |                    |                    |            |           |
+ -->
+
 
 ## _Model Selection and Findings_
 Primary findings/conclusions/recommendations
