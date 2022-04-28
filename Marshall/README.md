@@ -21,12 +21,15 @@ Needing structure on:
 - I merged together the Datasets from EnviroScreen but it did not include census and tract info like how Giovana and David collected.
 - understanding the impact of the census data. 
 4/18
-- Great processed dataset with all EnviroScreens and CEAS data. This is what I will use to model effectively. 
+- Great processed dataset created by group with all EnviroScreens and CEAS data. This is what I will use to model effectively. 
 - Lots of good learned process from the team with how to deal with missing data in this merged and processed dataset, I have a tendancy to drop and make similar which would ruin integrity. 
 
 4/20
 - I have regression models that are not great (.60 R2 roughly)
 - Have tried multiple different types of models, diving into GridSearch CV heavily and trying to tackle the XGboost Regression modle.
+
+4/23
+- Wrote executive summary and additions to the READ.md for the group.
 
 
 4/26
@@ -83,3 +86,9 @@ Methodology for why certain models were choosen.
 
    Let's make it happen and leave no doubt that the beautiful beaches, mountains, and valleys stay pure and continue to bring joy not health issues to our wonderful citizens. We have the chance to change and impact future generations and policy makers accross the globe. 
 
+
+| Model         | features used                                                                                                                                                                                                                                                                                                                                                                             | type                                    | evaluation metric           | Train Accuracy     | Test Accuracy      | RMSE score | MAE test score |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|-----------------------------|--------------------|--------------------|------------|-----------|
+| XGBoost       | total population, ozone, pm2.5, diesel pm, pesticides, traffic, cleanup sites, groundwater threats, haz. waste, imp. water bodies, solid waste, pollution burden, low birth weight, education, linguistic isolation, poverty, pop. char. , drinking water, tox. release, unemployment, ces_per, cardiovascular disease, housing burden, est total, est gen, est cold, est farm, est other | gradient boosting supervised regression | Accuracy, r_2 score, & RMSE | 0.9472151826696329 | 0.7639090300436409 | 14.376141  | 0.7       |
+| Random Forest | total population, ozone, pm2.5, diesel pm, pesticides, traffic, cleanup sites, groundwater threats, haz. waste, imp. water bodies, solid waste, pollution burden, education, linguistic isolation, poverty, pop. char. , drinking water, tox. release, unemployment, ces_per, housing burden, est total, est gen, est cold, est farm, est other                                           | meta estimator regression               | Accuracy, r_2 score, & RMSE | 0.9631357268516347 | 0.7488496371839088 | 14.739432  | 9.70       |
+|               |                                                                                                                                                                                                                                                                                                                                                                                           |                                         |                             |                    |                    |            |           |
