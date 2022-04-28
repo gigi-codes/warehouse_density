@@ -1,17 +1,5 @@
-Best Model: XGBoost Regression Model | 
-
-Features used: total population, ozone, pm2.5, diesel pm, pesticides, traffic, cleanup sites, groundwater threats, haz. waste, imp. water bodies, solid waste, pollution burden, low birth weight, education, linguistic isolation, poverty, pop. char. , drinking water, tox. release, unemployment, ces_per, cardiovascular disease, housing burden, est total, est gen, est cold, est farm, est other | 
-
-type: XGBoost is an efficient implementation of gradient boosting that can be used for regression predictive modeling.	| 
-
-evaluation metric: Accuracy, r_2 score, & RMSE metric | 
-
-results: Train Accuracy: 0.9472151826696329
-         Test Accuracy:  0.7639090300436409 
-         RMSE score: 14.376141
-         r_2 score: 
-         
---- 	| ---		| ---	| --- 			|
-
-
-Model 	| features used | type 	| evaluation metric 	| result 
+| Model         | features used                                                                                                                                                                                                                                                                                                                                                                             | type                                    | evaluation metric           | result                                                                                             |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------|
+| XGBoost       | total population, ozone, pm2.5, diesel pm, pesticides, traffic, cleanup sites, groundwater threats, haz. waste, imp. water bodies, solid waste, pollution burden, low birth weight, education, linguistic isolation, poverty, pop. char. , drinking water, tox. release, unemployment, ces_per, cardiovascular disease, housing burden, est total, est gen, est cold, est farm, est other | gradient boosting supervised regression | Accuracy, r_2 score, & RMSE | Train Accuracy:0.9472151826696329 Test Accuracy:0.7639090300436409 RMSE score:14.376141 r_2 score: |
+| Random Forest | total population, ozone, pm2.5, diesel pm, pesticides, traffic, cleanup sites, groundwater threats, haz. waste, imp. water bodies, solid waste, pollution burden, education, linguistic isolation, poverty, pop. char. , drinking water, tox. release, unemployment, ces_per, housing burden, est total, est gen, est cold, est farm, est other                                           | meta estimator regression               | Accuracy, r_2 score, & RMSE | Train accuracy:0.9631357268516347 Test accuracy:0.7488496371839088 RMSE score:14.739432 r_2 score: |
+|               |                                                                                                                                                                                                                                                                                                                                                                                           |                                         |                             |                                                                                                    |
