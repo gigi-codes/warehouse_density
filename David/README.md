@@ -182,3 +182,20 @@ warehouse types counted by zip. that's in `processed_data/business_counts_by_zip
 4/25
 ---
 The zip-warehouse counter was used by others to make a merged set. Made some initial linear regressions with each of the health data. These are just with time and space, just with warehouse counts, and with most of the physical measurements including warehouse counts and pollution levels.
+
+---
+---
+4/26 - 4/27
+---
+
+- fleshed out linear regressions on multiple sets of parameters. worked on interpretation. began a clean rewrite.
+- met about troubles with git, coordination
+- began as a group making slides and coordinating talk. hope to be confident about it tonight, with a practice. at least one friday morning.
+
+---
+---
+4/28
+---
+- finishing rewrite of linear regression notebook, with details on interpretation. picking out "best models"
+- make coefficient comparisons
+- adding those to the slides. should add data source descriptions to slides.
