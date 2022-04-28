@@ -93,8 +93,10 @@ def gs_rf(X, y, t_size, m_d):
 	
 	return(rf.base_estimator_, rf_coef_df, lr_df)
 	
-
+##### --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 ##### SVR FUNCTION #####  --- --- --- --- --- --- --- --- --- --- --- ---
+##### --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
 def gs_svr(X, y, t_size):
 
 	X = X
@@ -108,25 +110,24 @@ def gs_svr(X, y, t_size):
 	X_train = sc.fit_transform(X_train)
 	X_test = sc.transform(X_test)
 	
-	print ('fitting model ... ')
+	print ('fitting svr model ... ')
 # 	svr = SVR()
 	svr = SVR(kernel="linear")
 	svr.fit(X_train, y_train)
 
-	print ('predicting ... ')
+	print ('predicting all X ...  ')
 	# predictions, residuals
 #	train_preds = svr.predict(X_train)
 	predictions = svr.predict(X)
 	residuals = y - predictions
 	
-
+	print ('determining feature importances ... ')	
 	# Features Importances
 	svr_coef_df = pd.DataFrame({
         'Feature' : X.columns,
-        'Importances' : svr.coef_[1]})
+        'Importances' : svr.coef_[0]})
 
-	print ('--- calculating errors ... ')
-	print ('calculating  coefficients ... ')
+	print ('calculating error metrics ... ')
 	importen = svr.coef_
         
 	# errors 
@@ -146,15 +147,17 @@ def gs_svr(X, y, t_size):
 	svr_mets = ['r2', 'rss', 'max_e', 'rmse', 'mae', 'mse']
 	my_metricss = [r2, rss, max_e, rmse, mae, mse]
 	
-	print ('--- All Metrics Calculated:  ')
 	svr_df = pd.DataFrame({
 	'Metric':	svr_mets,
 	'Value':	my_metricss})
 	
-# 	print ('plotting feature importances ... ')	
-# 	# plot feature importances
-# 	pd.Series(rf.feature_importances_, X.columns).sort_values().plot(kind = 'barh');
+	print ('All Metrics Calculated. Done.  ')
+
+	
+	print ('plotting feature importances ... ')	
+	# plot feature importances
+	pd.Series(svr.coef_[0], X.columns).sort_values().plot(kind = 'barh');
 	
 	final_score = svr.score(X_train, y_train)
 	
-	return(final_score, importen, svr_df)
+	return(final_score, svr_df, svr_coef_df)
