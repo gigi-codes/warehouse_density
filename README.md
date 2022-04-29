@@ -41,11 +41,9 @@ From this data, we used the following for our model:
  
 <br>
 
-### <b>Data:</b> US Census Business Survey: Warehouse Counts, Density
+### <b>Data:</b> <a href = "https://www2.census.gov/programs-surveys/cbp/datasets/"> US Census Business Survey: Warehouse Counts, Density </a>
 **Description:**  The US Census counts ... 
 
-<a href = "https://www2.census.gov/programs-surveys/cbp/datasets/"> US Census Bureau  </a> 
-<a href = " "> Data Descriptions </a> Datasets were collected from ___?????
 
 year(s) | name/link     | description                  | size 
 ---     | ---           | ---                          | ---
@@ -63,31 +61,33 @@ est ag      | total number of warehouse for agricultural
 * filled medians? 
 
 
-### Data: _Dictionary for Model Features_
-
-
-variable name   | Type      | Description 
+### Data: _Model Features_
+variable name   | type      | description 
 ---             | ---       | ---   
-asthma          | numeric   | incidence rate, cases/ 10k population
-cardiovasccular | numeric   | incidence rate, cases/ 100 population
-low birth weight| numeric   | % newborns weighing `< 2500 g`
 diesel pm       | numeric   | particulate matter, spatially modelled
 ozone           | numeric   | concentration
 traffic         | numeric   | volume: vehicles per length of time over fixed distance
 traffic         | numeric   | volume: vehicles per length of time over fixed distance
 
-## _Target? Goal_
-We are 
-* regressing, 
-* classifying, 
-* using some forests
-* using (un)/supervised neural network to
-* model health outcomes  
+## _Target_
+
+We trained multiple estimators to model the following health outcomes: 
+
+variable name   | type      | description 
+---             | ---       | ---   
+asthma hospitalization         | numeric   | incidence rate, cases/ 10k population
+heat attack hospitalizatoin   | numeric   | incidence rate, cases/ 100 population
+low birth weight| numeric   | % newborns weighing `< 2.5 kg` (#/100 live births)
 
 
 ## _Exploratory Data Analyses_ 
 
 <img src = " " > INCLUDE CORR MATRIX IMAGES HERE
+
+![](/Giovanna/images/asthma.png)
+<img src = 'Giovanna/images/asthma.png'>
+
+
 
 ---
 ## _Model Performance_ 
@@ -124,115 +124,13 @@ These should follow from your project
 
 
 ## _Conclusion_
-You should provide an answer to your problem statement
+We saw saw no meaningful relationship to create robust models for health outcomes using our warehouse-aggregated data. _Cal EnviroScreen_ scores highly reflect `asthma` and `pollution burden` but not `hospitalization rates`. Socioeconomic factors aggregated in _Cal EnviroScreen_ built best predictive models for negative health outcomes, highlighting the need for the State to address root causes for pollution burden. 
 
 ---
 ## _Next Steps_
-Always focus on the positive (it's not what you did wrong, it's what you look forward to improving).
-Is your model ready for production? Probably not, but you can comment on how it might get there.
-Does this project demonstrate skills that you think could be applied to similar problems?
+We will continue to aggregate more data with finer ganularity, and explore the raw data from which the CalEnviroScreen was sourced and modelled. Furthemore, spatial and temporal analyses will provide more robust models for projecting and adddressing communites to support. 
 
 > ### Background: From the Press 
 * <a href ="https://www.epi.org/publication/unfulfilled-promises-amazon-warehouses-do-not-generate-broad-based-employment-growth/"> EPI: Warehouses Do Not Generate Broad-Based Employment </a> (cites the source I have for fulfillment center locations)
 * <a href = https://www.cbre.com/insights/local-response/2022-north-america-industrial-big-box-los-angeles-county> CBRE: 2022 North America Industrial Big Box Review & Outlook: Los Angeles County</a>
 > 
-
----
-
-> ## Data Dictionaries, _cont._
-<br>
-
-> ### For `ZBP[YR]DETAIL.TXT` files
-
-| Name     | Data Type | Description                                                 |
-|----------|------|-------------------------------------------------------------|
-| ZIP      | C    | ZIP Code                                                    |
-| NAICS    | C    | Industry Code - 6-digit NAICS code.                         |
-| EST      | N    | Total Number of Establishments                              |
-| N1_4     | N    | Number of Establishments: 1-4 Employee Size Class           |
-| N5_9     | N    | Number of Establishments: 5-9 Employee Size Class           |
-| N10_19   | N    | Number of Establishments: 10-19 Employee Size Class         |
-| N20_49   | N    | Number of Establishments: 20-49 Employee Size Class         |
-| N50_99   | N    | Number of Establishments: 50-99 Employee Size Class         |
-| N100_249 | N    | Number of Establishments: 100-249 Employee Size Class       |
-| N250_499 | N    | Number of Establishments: 250-499 Employee Size Class       |
-| N500_999 | N    | Number of Establishments: 500-999 Employee Size Class       |
-| N1000    | N    | Number of Establishments: 1,000 or More Employee Size Class |  
-
-> ### For `ZBP[YR]TOTALS.TXT` files 
-
-| Name    | Data Type | Description           |
-|---------|------|-----------------------|
-| ZIP     | C    | ZIP Code              |
-| NAME    | C    | ZIP Code Name         |
-| EMPFLAG | C    | Data Suppression Flag |
-| EMP_NF   | C | Total Mid-March Employees Noise Flag (flat definitions in table below) |
-| EMP      | N | Total Mid-March Employees with Noise                                                           |
-| QP1_NF   | C | Total First Quarter Payroll Noise Flag                                                         |
-| QP1      | N | Total First Quarter Payroll ($1,000) with Noise                                                |
-| AP_NF    | C | Total Annual Payroll Noise Flag                                                                |
-| AP       | N | Total Annual Payroll ($1,000) with Noise                                                       |
-| EST      | N | Total Number of Establishments                                                                 |
-| CITY     | C | ZIP City Name                                                                                  |
-| STABBR   | C | ZIP State Abbreviation                                                                         |
-| CTY_NAME | C | ZIP County Name                                                                                |
-
-> ### For `CBP[YR]CO.TXT` files 
-
-| Name     | Data Type | Description                         |
-|----------|------|-------------------------------------|
-| FIPSTATE | C    | FIPS State Code                     |
-| FIPSCTY  | C    | FIPS County Code                    |
-| NAICS    | C    | Industry Code - 6-digit NAICS code. |
-| EMPFLAG  | C    | Data Suppression Flag               |
-| EMP_NF                  | C | Total Mid-March Employees Noise Flag (Noise Flag below)
-| EMP                     | N | Total Mid-March Employees with Noise                                                           |
-| QP1_NF                  | C | Total First Quarter Payroll Noise Flag                                                         |
-| QP1                     | N | Total First Quarter Payroll ($1,000) with Noise                                                |
-| AP_NF                   | C | Total Annual Payroll Noise Flag                                                                |
-| AP                      | N | Total Annual Payroll ($1,000) with Noise                                                       |
-| EST                     | N | Total Number of Establishments                                                                 |
-| N1_4                    | N | Number of Establishments: 1-4 Employee Size Class                                              |
-| N5_9                    | N | Number of Establishments: 5-9 Employee Size Class                                              |
-| N10_19                  | N | Number of Establishments: 10-19 Employee Size Class                                            |
-| N20_49                  | N | Number of Establishments: 20-49 Employee Size Class                                            |
-| N50_99                  | N | Number of Establishments: 50-99 Employee Size Class                                            |
-| N100_249                | N | Number of Establishments: 100-249 Employee Size Class                                          |
-| N250_499                | N | Number of Establishments: 250-499 Employee Size Class                                          |
-| N500_999                | N | Number of Establishments: 500-999 Employee Size Class                                          |
-| N1000                   | N | Number of Establishments: 1,000 or More Employee Size Class                                    |
-| N1000_1                 | N | Number of Establishments: Employment Size Class: 1,000-1,499 Employees                         |
-| N1000_2                 | N | Number of Establishments: Employment Size Class: 1,500-2,499 Employees                         |
-| N1000_3                 | N | Number of Establishments: Employment Size Class: 2,500-4,999 Employees                         |
-| N1000_4                 | N | Number of Establishments: Employment Size Class: 5,000 or More Employees                       |
-| CENSTATE                | C | Census State Code                                                                              |
-| CENCTY                  | C | Census County Code                                                                             |
-
-<br>
-
-| CLASS | # EMPLOYEES | - |
-|---|-----------------|---|
-| A | 0-19            |   |
-| B | 20-99           |   |
-| C | 100-249         |   |
-| E | 250-499         |   |
-| F | 500-999         |   |
-| G | 1,000-2,499     |   |
-| H | 2,500-4,999     |   |
-| I | 5,000-9,999     |   |
-| J | 10,000-24,999   |   |
-| K | 25,000-49,999   |   |
-| L | 50,000-99,999   |   |
-| M | 100,000 or More |   |
-
-<br>
-
-> * Employer Flag: denotes employment size class for data withheld to avoid disclosure (confidentiality) or withheld because data do not meet publication standard
->* NOTE: Noise Flag definitions (fields ending in _NF) are:
-
-| CODE | Noise Definition | - | 
-|-------------------------------|------------------------------------------------------------------------------------------------------------------|---|
-| G                             | 0 to < 2% noise (low noise)                                                                                      |   |
-| H                             | 2 to < 5% noise (medium noise)                                                                                   |   |
-| D                             | Withheld to avoid disclosing data for individual companies; data are included in higher level totals. Employment or payroll field set to zero. |    |
-| S                             | Withheld because estimate did not meet publication standards. Employment or payroll field set to zero.           |   |
