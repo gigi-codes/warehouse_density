@@ -1,52 +1,7 @@
-> # 4/26
-> #  TO DO 
-> * SLIDES 
-> * #### SLIDES
-> * ### SLIDES
-> * ## SLIDES
-> * # SLIDES
-> * # **SLIDES**
-> * CLEAN UP `REPOSITORY`, with following structure: 
->    1. `code` directory with all notebooks
->       * $TOC$ at top of each notebooks 
->       1. combining all ES
->       2. extracting from census
->       3. combing ES + census 
->       4. initial EDAs (4_1, 4_2, 4_3, etc.)
->       5. David's LRs
->       6. G's RFs, SVR, XGB
->       7. Marshalls's XGB? 
->       8. Final Model & Conclusion 
->    2. `raw_data` 
->       * ES data
->       * census business survey 
->    3. `processed_data`
->    4. `ES` PDFs
->    5. `other` PDFs, links, etc. 
-> 
-> <br>
-> 
-> * ~~CLEAN `all_processed` file in `processed_data` directory:~~
->   * ~~all four ES datasets~~
->   * ~~warehouse-data for 4 years from census~~ 
-
-
-> # NOTES
-> #### _4/24_
-> * `processed_data` directory has all files ready for `imputing`
-> * `05_merged` nb in `Giovanna` directory has some initial EDA
->
-> #### _4/22_ 
-> * $G$ messed up $David's$ initial EDA notebook trying to add my last name. Don't know how to fix it right now, but can confirm previous versions ARE saved and accessible via github's version /revision history. Will look into this later. 
-
----
----
----
-
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Health Outcomes Modeled Over Multiple CalEnviroScreen Reporting Periods
 
 ---
-## ***Summary***  We aggregated data from `four` <a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA CalEnviro Screen</a> reports, appended warehouse numbers from <a href = "link"> US Census Business Counts</a>  and trained `54` estimators to model health outcomes from collected data: `THE NN/XGB/RFR MODEL`, performed the best, accurately predciting `100%` of the health outcomes on `new data.` 
+## ***Summary***  We aggregated data from `four` <a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA CalEnviro Screen</a> reports, appended warehouse numbers from <a href = "link"> US Census Business Counts</a>  and trained `5` estimators with different features to model health outcomes from collected data: `XGBOOST`, performed the best, accurately predciting `7XXX%` of asthma hospitalization rates on `new data.` 
 ---
 
 
@@ -84,9 +39,7 @@ California Office of Environmental Health Hazard Assessment (<a href = "https://
 **Description:**  The US Census counts ... 
 
 <a href = "https://www2.census.gov/programs-surveys/cbp/datasets/"> US Census Bureau  </a> 
-<a href = " "> Data Descriptions </a> Datasets were collected from 
-
-datasets: 
+<a href = " "> Data Descriptions </a> Datasets were collected from ___?????
 
 year(s) | name/link     | description                  | size 
 ---     | ---           | ---                          | ---
@@ -103,10 +56,6 @@ est ag      | total number of warehouse for agricultural
 ### Additional cleaning steps: 
 * filled medians? 
 
-* MEASURABLE: incidence change over four time periods 
-* Relevant: YES. We care about the cost of our online shopping? 
-* Time-bound: YES: We have to select the period/ years we wish to model.
-* NOVEL: really good work, David, in compiling # of warehouses !!! 
 
 ### Data: _Dictionary for Model Features_
 
