@@ -1,12 +1,17 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Health Outcomes Modeled Over Multiple CalEnviroScreen Reporting Periods
 
 ---
-## ***Summary***  We aggregated data from `four` <a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA CalEnviro Screen</a> reports, appended warehouse numbers from <a href = "link"> US Census Business Counts</a>  and trained `5` estimators with different features to model health outcomes from collected data: `XGBOOST`, performed the best, accurately predciting `7XXX%` of asthma hospitalization rates on `new data.` 
+We aggregated data from `4` <a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA CalEnviro Screen</a> reports, appended warehouse counts extracted from <a href = "link"> US Census Business Data</a> and trained numerous estimators, however none reliably modelled health outcomes using the aggregated data.
+
 ---
 
-
 ## Background 
-California Office of Environmental Health Hazard Assessment (<a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA</a>) has compiled data from various government agencies to create a mapping tool used to identifying communities most affected by various pollution sources, producing four reports total in years 2013, 2014, 2018 and 2021. 
+California Office of Environmental Health Hazard Assessment (<a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA</a>) has compiled data from various government agencies to create a mapping tool used to identifying communities most affected by various pollution sources, producing four reports total in years 2013, 2014, 2018 and 2021 with scores to for each identified disadvantaged community that was disproportionally facing enviornmental impacts. We sought to create models to answer the following questoins: 
+
+* Is effect of increased warehouse presence on health outcomes quantifiable ?
+* What are primary mitigating factors the State can address in response to increased warehouse density?
+* How well do the CalEnviroScreen scores reflect emergency healthcare counts?
+* What indicators from the CalEnviroScreen dataset best determine the number of emergency healthcare visits?
 
 ---
 ## Data Acquisition & Cleaning 
@@ -24,6 +29,7 @@ California Office of Environmental Health Hazard Assessment (<a href = "https://
  |   | |  Combined Data   | (25444, 62) |
  |   | |   **Used Data**   | (14912, 59) |
 
+From this data, we used the following for our model: 
 
  * `ozone` data from CalEnviroScreen (CAES) 4: converted from yearly units to daily units
  * `low birth rate` in CAES 2: converted from fraction to percent
@@ -88,12 +94,9 @@ We are
 
 > ### Giovanna: Random Forest & SVR 
 
-Model   | Transformer       | Regularization        | $n$  | Train   
----     |---                | ---                   | ---  | ---     
-1       | Linear Regression | Logistic Regressor    | 14000 | 0.7373  
-2       | Random Forest Regressor  | none   | 14000 | 0.55
-3       | SVR | None	        | 1400 | 0.44 
-
+Model   | Estimator                 | $n-estimator$  | $max  depth$ | $max features$  | $max leaf nodes$ | $R^2$
+---     |---                        | ---            | ---         | ---             | ---            | --- 
+1*      | Decision Tree Regressor   | 100            | 10          | auto            | 10             | -1.5
 
 
 Include Feature Importances Plot here from RFR
