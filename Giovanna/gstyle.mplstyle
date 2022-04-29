@@ -5,12 +5,14 @@
 #plt.rc('grid', color='w', linestyle='solid')
 #plt.rc('xtick', direction='out', color='gray')
 #plt.rc('ytick', direction='out', color='gray')
-#plt.rc('patch', edgecolor='#E6E6E6')
+##plt.rc('patch', edgecolor='#E6E6E6')
+#plt.rc('patch', edgecolor='midnightblue')
 #plt.rc('lines', linewidth=2)
 
 
 ### FIGURE
-figure.facecolor: lightgrey
+figure.facecolor: bisque
+#figure.facecolor:lightsteelblue
 figure.dpi: 100
 figure.titlesize: 14
 figure.titleweight: bold
@@ -19,7 +21,8 @@ figure.titleweight: bold
 lines.linewidth: 1.5
 
 ### PATCHES
-patch.facecolor: 0072B2
+#patch.facecolor: 0072B2
+patch.facecolor: navy
 
 ### LEGEND
 legend.fontsize: 12
@@ -36,7 +39,8 @@ font.size: 12
 
 ### AXES
 axes.grid: False
-axes.facecolor: lightgrey
+# axes.facecolor: lightgrey
+axes.facecolor: bisque
 axes.linewidth: 1.0
 axes.titlesize: 12
 axes.titleweight: bold
