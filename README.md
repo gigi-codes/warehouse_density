@@ -91,32 +91,25 @@ _Health outcomes on vertical axis suggest locations with traffic concentrations 
 > ### David: Linear Models
 The linear models give us a sense of which of the features to focus on if we want to address these health issues.
 
-large coefficients ---(relative to that feature scale. Divide these by corresponding feature stds or scale data ahead of time for direct comparison of importance. not as fancy as PCR or other importance techniques)---
-large coefficients on high R^2 models indicate features to work on if we wish to reduce ER visits for these three health types.
+Coefficients for these models were scaled and used to mark the most important features for addressing the health data. Ultimately, we found that the socioeconomic factors of unemployment, housing burden, linguistic isolation, and poverty were as an ensemble more effective at predicting the health data than the ensemble of pollution and warehouse data.
 
-* warehouses alone are very poor indicators.
-* socio-economi metrcs not as good as the caes modified scores (which also account for social and pollution), but some relationship here.
+In fact, we found that warehouse counts have nearly no predictive value.
 
 
-Model   | Features                              | Target | $R^2 train$  | $R^2 test$
----     |---                                    | ---    | ---          | --- 
-1       | selected: no time, space or CES scores| Asthma | 0.59292      | 0.59249
-2       | selected: no time, space or CES scores| CVD    | 0.49659      | 0.50636
-3       | selected: no time, space or CES scores| LBW    | 0.38478      | 0.40500
-4       | warehouse counts only                 | Asthma | 0.02162      | 0.02139
-5       | warehouse counts only                 | CVD    | 0.00419      | 0.00404
-6       | warehouse counts only                 | LBW     | 0.02167     | 0.02177
-7       | socio-economic only                   | Asthma | 0.02162      | 0.02139
-8       | socio-economic only                   | CVD    | 0.10994      | 0.11001
-9       | socio-economic only                   | LBW    | 0.13333      | 0.13754
+Model   | Features                              | Target | $R^2 train$  |
+---     |---                                    | ---    | ---          | 
+1       | selected: no time, space or CES scores| Asthma | 0.29      |
+2       | selected: no time, space or CES scores| LBW    | 0.14     |
+3       | selected: no time, space or CES scores| CVD    | 0.23      |
+4       | warehouse counts only                 | Asthma | 0.017      |
+5       | warehouse counts only                 | LBW   | 0.002     |
+6       | warehouse counts only                 | CVD   | 0.013     |
+7       | socio-economic only                   | Asthma | 0.263     |
+8       | socio-economic only                   | LBW    | 0.1337      |
+9       | socio-economic only                   | CVD    | 0.11      |
 
-* the caes scores are actually decent.
-CAES scores alone (train/test)
-the caes scores are decent.
-* asthma (0.4832395083165938, 0.4807148307370688)
-* lbw (0.23950857499514167, 0.2515350979968135)
-* cvd (0.2364798467342505, 0.23122365100217368)
-* comparing these, as well as with correlations alone, gives a sense of the importance of the social features.
+The models that yielded these metrics are developed in [Notebook 7: Linear Regression](./David/7_linear_regression.ipynb). The procedure for processing the raw data leading up to this notebook begins with [Notebook 1: EDA on CAES 4 Data](./David/1_Deda_commit_da4c1ce.ipynb).
+
 <br> 
 
 > ### Giovanna: Random Forest & SVR 

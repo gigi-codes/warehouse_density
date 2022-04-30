@@ -215,11 +215,4 @@ to do:
         - add linear model results
         - add make flow chart or description of notebook order, with links to notebooks
         - include description of the zbp data source and type.
-    - notebooks to clean up:
-        -1
-        -2
-        -3
-        -4
-        -5
-        -6
-        -7
+
