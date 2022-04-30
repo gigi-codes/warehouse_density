@@ -87,10 +87,13 @@ low birth weight| numeric   | % newborns weighing `< 2.5 kg` (#/100 live births)
 
 ## _Exploratory Data Analyses_ 
 
-<img src = " " > INCLUDE CORR MATRIX IMAGES HERE
+* outliers in features were not dropped: as the data from the report is meticulously collected and averaged, eliminating observations outside of some central-tendency would eliminate communities that are most affected by selected factors. 
 
-<img src = Giovanna/images/asthmaa.png><br>
+<img src = Giovanna/images/warehousehealth.png><br>
 
+<img src = Giovanna/images/warehousehealth.png><br>
+
+<img src = Giovanna/images/warehousehealth.png><br>
 
 ---
 ## _Modeling_
@@ -103,18 +106,9 @@ large coefficients on high R^2 models indicate features to work on if we wish to
 
 * warehouses alone are very poor indicators.
 * socio-economi metrcs not as good as the caes modified scores (which also account for social and pollution), but some relationship here.
-* the caes scores are actually decent.
-CAES scores alone (train/test)
-the caes scores are decent.
-asthma
-(0.4832395083165938, 0.4807148307370688)
-lbw
-(0.23950857499514167, 0.2515350979968135)
-cvd
-(0.2364798467342505, 0.23122365100217368)
 
 
-Model   | Features                              | Target | $R^2_train$  | $R^2_test$
+Model   | Features                              | Target | $R^2 train$  | $R^2 test$
 ---     |---                                    | ---    | ---          | --- 
 1       | selected: no time, space or CES scores| Asthma | 0.59292      | 0.59249
 2       | selected: no time, space or CES scores| CVD    | 0.49659      | 0.50636
@@ -123,15 +117,16 @@ Model   | Features                              | Target | $R^2_train$  | $R^2_t
 5       | warehouse counts only                 | CVD    | 0.00419      | 0.00404
 6       | warehouse counts only                 | LBW     | 0.02167     | 0.02177
 7       | socio-economic only                   | Asthma | 0.02162      | 0.02139
-8       | warehouse counts only                 | CVD    | 0.10994      | 0.11001
-9       | warehouse counts only                 | LBW    | 0.13333      | 0.13754
+8       | socio-economic only                   | CVD    | 0.10994      | 0.11001
+9       | socio-economic only                   | LBW    | 0.13333      | 0.13754
 
-
-
-
-
-
-comparing these, as well as with correlations alone, gives a sense of the importance of the social features.
+* the caes scores are actually decent.
+CAES scores alone (train/test)
+the caes scores are decent.
+* asthma (0.4832395083165938, 0.4807148307370688)
+* lbw (0.23950857499514167, 0.2515350979968135)
+* cvd (0.2364798467342505, 0.23122365100217368)
+* comparing these, as well as with correlations alone, gives a sense of the importance of the social features.
 <br> 
 
 > ### Giovanna: Random Forest & SVR 
