@@ -199,3 +199,10 @@ The zip-warehouse counter was used by others to make a merged set. Made some ini
 - finishing rewrite of linear regression notebook, with details on interpretation. picking out "best models"
 - make coefficient comparisons
 - adding those to the slides. should add data source descriptions to slides.
+
+---
+---
+4/29
+---
+We met this morning and finished our slides, compared them, practiced twice, and spoke to the class.
+Two of us met in the breakout room at the end of the day to discuss organizing and commenting on this repo.
