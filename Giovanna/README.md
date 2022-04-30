@@ -1,6 +1,12 @@
 # GIGI'S LOG
 <br> 
 
+> 4/27
+* two models done, really bad but have plots
+* update `my_metrics` to run a gridsearch rather than fixed parameters. 
+* gradient
+* random forest 
+
 > 4/26
 #### updated `my_metrics` to print importances with labels, additional errors and include `max_depth` in f(`arguments`)
 * the module/function scales: no need to do it before-hand
