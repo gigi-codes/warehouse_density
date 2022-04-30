@@ -32,19 +32,21 @@ California Office of Environmental Health Hazard Assessment (<a href = "https://
 <br>
 
 ### <b>Data:</b> <a href = "https://www2.census.gov/programs-surveys/cbp/datasets/"> US Census Business Survey: Warehouse Counts, Density </a>
-**Description:**  The US Census counts ... 
+**Description:**  The US Census data is business counts by county, zip code and business type. 
 
-
+<!-- 
 year(s) | name/link     | description                  | size 
 ---     | ---           | ---                          | ---
 2012    |   xxx         |  business by type in county  | row x col 
-2012    |   xxx         |  business counts by zip      | row x col 
+2012    |   xxx         |  business counts by zip      | row x col  -->
 
 
 name        | description 
 ---         | --- 
 est total   | total number of warehouses in class 
 est ag      | total number of warehouse for agricultural 
+est cold    | total number of warehouses for cold storage
+est gen     | total number of warehouses for general storage
 
 ### Data: _Model Features_
 
@@ -56,11 +58,11 @@ diesel pm       | numeric   | particulate matter, spatially modelled
 ozone           | numeric   | concentration
 traffic         | numeric   | volume: vehicles per length of time over fixed distance
 
-## *_Target_*
+---
+
+## _Target_
 
 We trained multiple estimators to model the outcomes reported in the _CalEnviroScreen_ reports to build upon that work: 
-
-<br>
 
 variable name   | type      | description 
 ---             | ---       | ---   
@@ -77,11 +79,12 @@ low birth weight| numeric   | % newborns weighing `< 2.5 kg` (#/100 live births)
 <img src = Giovanna/images/warehousehealth.png><br>
 _Health outcomes on vertical axis suggest locations with high-warehouse density have higher rates of negative health outcomes._
 
-<img src = Giovanna/images/traffichealth.png><br>
-_Health outcomes on vertical axis suggest locations with high-warehouse density have higher rates of negative health outcomes._
+<img src = Giovanna/images/healthpm.png><br>
+_Health outcomes on vertical axis suggest locations with high $PM_{2.5}$ have higher rates of negative health outcomes._
 
-<img src = Giovanna/images/dieselhealth.png><br>
-_Health outcomes on vertical axis suggest locations with high-warehouse density have higher rates of negative health outcomes._
+<img src = Giovanna/images/traffichealth.png><br>
+_Health outcomes on vertical axis suggest locations with traffic concentrations have higher rates of negative health outcomes._
+
 ---
 ## _Modeling_
 
