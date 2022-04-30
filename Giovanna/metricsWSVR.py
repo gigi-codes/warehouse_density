@@ -1,19 +1,21 @@
 # ---------------------------
 # module has two functions
 # ---------------------------
+#
 # 1: G's Random Forest Regressor
-# gs_rf(X, y, t_size, m_d)
+# gs_rf(X, y, params)
 # 	X, y
 # 	t_size : train set size
-#	m_d: max_leaf_depth
+#	params_in : parameters dict
 # takes FOUR (4) args: clean, numeric, dummified (X, y) and train_size (0-1), and leaf depth 
+#
 # ---------------------------
 # 2: G's SVR (?)
 # gs_svr(X, y, t_size, m_d)
 # 	X, y
 # 	t_size : train set size
 #	m_d: max_leaf_depth
-# takes FOUR (3) args: clean, numeric, dummified (X, y) and train_size (0-1)
+# takes FOUR (4) args: clean, numeric, dummified (X, y) and train_size (0-1)
 # runs grid search over fixed values in function
 # ---------------------------
 
@@ -43,82 +45,60 @@ from sklearn.preprocessing import PolynomialFeatures
 ##### --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 ##### RF FUNCTION DEF #####   --- --- --- --- --- --- --- --- --- --- ---
 ##### --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-def gs_rf(X, y, t_size, m_d):
+
+def gs_rf(X, y, params_in):
+
     X = X
     y = y 
-	# pre-processing --- --- ---
-    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 42, train_size = t_size)
-    # scale
+    
+    print ('pre-processing ... ')
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 42, train_size = 0.7)
     sc = StandardScaler()
     X_train = sc.fit_transform(X_train)
     X_test = sc.transform(X_test)
     
-##### S E A R C H   --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
     rf = RandomForestRegressor()
-
-    #(['bootstrap', 'ccp_alpha', 'criterion', 'max_depth', 'max_features', 
-    # 'max_leaf_nodes', 'max_samples', 'min_impurity_decrease', 'min_impurity_split', 
-    # 'min_samples_leaf', 'min_samples_split', 'min_weight_fraction_leaf', 'n_estimators', 
-    # 'n_jobs', 'oob_score', 'random_state', 'verbose', 'warm_start'])
+    params = params_in
     
-#     params  =  {
-#     	'n_estimators': [100,150], 
-#     	'max_depth': [2, 5, 10],
-#         'max_features': [0, 10]
-#         }
-
-    # Instantiate GridSearchCV.
+    print ('fitting ...')
     gs = GridSearchCV(rf, params, cv = 3)
     
-    # FIT gs
     gs.fit(X_train, y_train)
-#     results = sorted(gs.best_estimator_.feature_importances_)
     results = gs.best_estimator_.feature_importances_
-# 	# making predictions to get residuals  
-# 	pred = gs.predict(X_test)
-	#plot feature importances
-    pd.Series(results, X.columns).sort_values(ascending = false).plot(kind = 'barh');
     
-#     f_list = (results)
-#     keys = list(feature_important.keys())
-# values = list(feature_important.values())
-# 
-# data = pd.DataFrame(data=values, index=keys, columns=["score"]).sort_values(by = "score", ascending=False)
-# data.nlargest(40, columns="score").plot(kind='barh', figsize = (20,10)) ## plot top 40 features
+    print ('error calculations ... ')
+    # making predictions to get residuals  
+    preds = gs.predict(X)
+    residuals = y - preds
     
-    return(results)
-# ##### --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-# 			
-# # 		RandomForestClassifier(bootstrap=True, class_weight=None, criterion='entropy',
-# #                        max_depth=None, max_features='auto', max_leaf_nodes=None,
-# #                        min_impurity_decrease=0.0, min_impurity_split=None,
-# #                        min_samples_leaf=1, min_samples_split=2,
-# #                        min_weight_fraction_leaf=0.0, n_estimators=10,
-# #                        n_jobs=None, oob_score=False, random_state=0, verbose=0,
-# #                        warm_start=False)
-# 
-# 	# Features Importances
-# 	gs.rf_coef_df = pd.DataFrame({
-#         'Feature' : X.columns,
-#         'Importances' : rf.feature_importances_})
-# 		
-# 	# making predictions to get residuals  
-	pred = gs.predict(X_test)
-# 	
-# 	# errors 
-# 	rss = round((residuals **2).sum(), 4)									# rss = sse 
-# 	max_e = round(metrics.max_error(y, predictions)  , 4)					# max error
-# 	rmse = round(np.sqrt(metrics.mean_squared_error(y, predictions)), 4)    # root mean squared error
-# 	mae = round(metrics.mean_squared_error(y, predictions),4)               # mean absolute error
-# 	mse = round(metrics.mean_squared_error(y, predictions),4)               # mean squared error  
-# 	r2 = round(metrics.r2_score(y, predictions), 4)                        	# coefficient of determination
-# 	r2xval = round(cross_val_score(rf, X, y).mean(), 4)					# X-val score
-# 	
-# 	my_metrics_s = ['r2', 'rss', 'max_e', 'rmse', 'mae', 'mse', 'r2xval']
-# 	my_metrics = [r2, rss, max_e, rmse, mae, mse, r2xval ]
-# 
-# 	lr_df = pd.DataFrame({
-# 	'Metric':	my_metrics_s,
-# 	'Value':	my_metrics})
-	
-# 	return(rf.base_estimator_, rf_coef_df, lr_df)
+    # errors
+    rss = round((residuals **2).sum(), 4)
+    max_e = round(metrics.max_error(y, preds), 4)
+    rmse = round(np.sqrt(metrics.mean_squared_error(y, preds)), 4)
+    mae = round(metrics.mean_squared_error(y, preds),4)
+    mse = round(metrics.mean_squared_error(y, preds),4)
+    r2 = round(metrics.r2_score(y, preds), 4)
+    
+    my_metrics_s = ['r2', 'rss', 'max_e', 'rmse', 'mae', 'mse']
+    my_metrics = [r2, rss, max_e, rmse, mae, mse]
+
+    gs_fi = pd.DataFrame({
+        'Feature':	X.columns,
+        'Importance': gs.best_estimator_.feature_importances_
+        })
+    
+    gs_metrics = pd.DataFrame({
+        'Metric':	my_metrics_s,
+        'Value':	my_metrics
+        })
+        
+    print ('plotting ... ')
+    
+    f, ax = plt.subplots(figsize=(5,7))
+    ax.tick_params(bottom=False, left = False)  # remove the ticks
+    pd.Series(results, X.columns).sort_values(ascending = False).plot(kind = 'barh');
+    (sns.despine(left=True, bottom=True))
+
+    #return(gs_fi, gs_metrics)
+    return(gs.best_estimator_.get_params, gs_fi, gs_metrics)

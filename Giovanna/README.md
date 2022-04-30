@@ -1,6 +1,26 @@
 # GIGI'S LOG
 <br> 
 
+## Files in this Directory & Description: 
+* `01` First EDA of EnviroScreen (ES) report #3, 2018
+* `02` Initial comparison of ES 1, 2, 3 datasets 
+* `03` Processing data sets from each ES-report-sourced dataset to compile single aggregate set
+* `04` EDA on aggregated dataset 
+* `05` Combine aggregated dataset with david's warehouse counts 
+* `06` EDA on warehouse + ES dataset, prelim RFR and SVR modelling
+* `07` XG Boost model endeavors
+* `08` Random Forest Regressor Model Tuning
+
+---
+## GIGI'S WORK LOG
+___
+
+> 4/27
+* two models done, really bad but have plots
+* update `my_metrics` to run a gridsearch rather than fixed parameters. 
+* gradient
+* random forest 
+
 > 4/26
 #### updated `my_metrics` to print importances with labels, additional errors and include `max_depth` in f(`arguments`)
 * the module/function scales: no need to do it before-hand
