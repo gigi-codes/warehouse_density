@@ -1,12 +1,17 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Health Outcomes Modeled Over Multiple CalEnviroScreen Reporting Periods
 
 ---
-## ***Summary***  We aggregated data from `four` <a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA CalEnviro Screen</a> reports, appended warehouse numbers from <a href = "link"> US Census Business Counts</a>  and trained `5` estimators with different features to model health outcomes from collected data: `XGBOOST`, performed the best, accurately predciting `7XXX%` of asthma hospitalization rates on `new data.` 
+We aggregated data from `4` <a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA CalEnviro Screen</a> reports, appended warehouse counts extracted from <a href = "link"> US Census Business Data</a> and trained numerous estimators, however none reliably modelled health outcomes using the aggregated data.
+
 ---
 
-
 ## Background 
-California Office of Environmental Health Hazard Assessment (<a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA</a>) has compiled data from various government agencies to create a mapping tool used to identifying communities most affected by various pollution sources, producing four reports total in years 2013, 2014, 2018 and 2021. 
+California Office of Environmental Health Hazard Assessment (<a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA</a>) has compiled data from various government agencies to create a mapping tool used to identifying communities most affected by various pollution sources, producing four reports total in years 2013, 2014, 2018 and 2021 with scores to for each identified disadvantaged community that was disproportionally facing enviornmental impacts. Because trasportation of goods and people continues to be the primary source of emissions, and because increased commerce requires increased warehousing and associated transportation, we sought to create models to answer the following questoins: 
+
+* Is effect of increased warehouse presence on health outcomes quantifiable ?
+* What are primary mitigating factors the State can address in response to increased warehouse density?
+* How well do the CalEnviroScreen scores reflect emergency healthcare counts?
+* What indicators from the CalEnviroScreen dataset best determine the number of emergency healthcare visits?
 
 ---
 ## Data Acquisition & Cleaning 
@@ -24,6 +29,7 @@ California Office of Environmental Health Hazard Assessment (<a href = "https://
  |   | |  Combined Data   | (25444, 62) |
  |   | |   **Used Data**   | (14912, 59) |
 
+From this data, we used the following for our model: 
 
  * `ozone` data from CalEnviroScreen (CAES) 4: converted from yearly units to daily units
  * `low birth rate` in CAES 2: converted from fraction to percent
@@ -35,11 +41,9 @@ California Office of Environmental Health Hazard Assessment (<a href = "https://
  
 <br>
 
-### <b>Data:</b> US Census Business Survey: Warehouse Counts, Density
+### <b>Data:</b> <a href = "https://www2.census.gov/programs-surveys/cbp/datasets/"> US Census Business Survey: Warehouse Counts, Density </a>
 **Description:**  The US Census counts ... 
 
-<a href = "https://www2.census.gov/programs-surveys/cbp/datasets/"> US Census Bureau  </a> 
-<a href = " "> Data Descriptions </a> Datasets were collected from ___?????
 
 year(s) | name/link     | description                  | size 
 ---     | ---           | ---                          | ---
@@ -57,57 +61,123 @@ est ag      | total number of warehouse for agricultural
 * filled medians? 
 
 
-### Data: _Dictionary for Model Features_
+### Data: _Model Features_
 
+<br >
 
-variable name   | Type      | Description 
+variable name   | type      | description 
 ---             | ---       | ---   
-asthma          | numeric   | incidence rate, cases/ 10k population
-cardiovasccular | numeric   | incidence rate, cases/ 100 population
-low birth weight| numeric   | % newborns weighing `< 2500 g`
 diesel pm       | numeric   | particulate matter, spatially modelled
 ozone           | numeric   | concentration
 traffic         | numeric   | volume: vehicles per length of time over fixed distance
-traffic         | numeric   | volume: vehicles per length of time over fixed distance
 
-## _Target? Goal_
-We are 
-* regressing, 
-* classifying, 
-* using some forests
-* using (un)/supervised neural network to
-* model health outcomes  
+## *_Target_*
 
+We trained multiple estimators to model the outcomes reported in the _CalEnviroScreen_ reports to build upon that work: 
+
+<br>
+
+variable name   | type      | description 
+---             | ---       | ---   
+asthma hospitalization         | numeric   | incidence rate, cases/ 10k population
+heat attack hospitalizatoin   | numeric   | incidence rate, cases/ 10k population
+low birth weight| numeric   | % newborns weighing `< 2.5 kg` (#/100 live births)
+
+---
 
 ## _Exploratory Data Analyses_ 
 
 <img src = " " > INCLUDE CORR MATRIX IMAGES HERE
 
+<img src = Giovanna/images/asthmaa.png><br>
+
+
 ---
-## _Model Performance_ 
+## _Modeling_
+
+> ### David: Linear Models
+The linear models give us a sense of which of the features to focus on if we want to address these health issues.
+
+large coefficients ---(relative to that feature scale. Divide these by corresponding feature stds or scale data ahead of time for direct comparison of importance. not as fancy as PCR or other importance techniques)---
+large coefficients on high R^2 models indicate features to work on if we wish to reduce ER visits for these three health types.
+
+* warehouses alone are very poor indicators.
+* socio-economi metrcs not as good as the caes modified scores (which also account for social and pollution), but some relationship here.
+* the caes scores are actually decent.
+CAES scores alone (train/test)
+the caes scores are decent.
+asthma
+(0.4832395083165938, 0.4807148307370688)
+lbw
+(0.23950857499514167, 0.2515350979968135)
+cvd
+(0.2364798467342505, 0.23122365100217368)
+
+
+Model   | Features                              | Target | $R^2_train$  | $R^2_test$
+---     |---                                    | ---    | ---          | --- 
+1       | selected: no time, space or CES scores| Asthma | 0.59292      | 0.59249
+2       | selected: no time, space or CES scores| CVD    | 0.49659      | 0.50636
+3       | selected: no time, space or CES scores| LBW    | 0.38478      | 0.40500
+4       | warehouse counts only                 | Asthma | 0.02162      | 0.02139
+5       | warehouse counts only                 | CVD    | 0.00419      | 0.00404
+6       | warehouse counts only                 | LBW     | 0.02167     | 0.02177
+7       | socio-economic only                   | Asthma | 0.02162      | 0.02139
+8       | warehouse counts only                 | CVD    | 0.10994      | 0.11001
+9       | warehouse counts only                 | LBW    | 0.13333      | 0.13754
+
+
+
+
+
+
+comparing these, as well as with correlations alone, gives a sense of the importance of the social features.
+<br> 
 
 > ### Giovanna: Random Forest & SVR 
+<br> 
 
-Model   | Transformer       | Regularization        | $n$  | Train   
----     |---                | ---                   | ---  | ---     
-1       | Linear Regression | Logistic Regressor    | 14000 | 0.7373  
-2       | Random Forest Regressor  | none   | 14000 | 0.55
-3       | SVR | None	        | 1400 | 0.44 
+`Random Forest Regression` over a Gridsearch to find optimal values returned the following importances and low-performance scores, indicating that the metrics we used to model health outcomes are insufficient, and highlighting that socioeconomic factors are much more predictive. Specifically, the number of warehouses in a given zip code does not reflect the outcomes in that zip code. 
 
+Model   | Estimator                | Features   | Target    |  $R^2$
+---     |---                       | ---        | ---       | --- 
+1      | Decision Tree Regressor   | all | asthma           | -0.07
+2      | Decision Tree Regressor   | all | heart attack     | -0.07
+3      | Decision Tree Regressor   | all | low birth weight | -0.07
+4      | Decision Tree Regressor   | non-se | asthma           | -0.07
+5      | Decision Tree Regressor   | non-se | heart attack     | -0.07
+6     | Decision Tree Regressor    | non-se | low birth weight | -0.07
 
+<br> 
 
-Include Feature Importances Plot here from RFR
-<img src = " ">
+<img src = Giovanna/images/asthmaa.png><br>
+_Features importances with all features, model target is `asthma`._
 
-> ### Marshall: XGBOOST: table hidden for now, truncate values on accuracy scores
+<img src = Giovanna/images/caridoa.png><br>
+_Features importances with all features, model target is `heart-attacke` hospitalization._ 
 
-<!-- reinclude after truncating values 
-| Model         | features used                                                                                                                                                                                                                                                                                                                                                                             | type                                    | evaluation metric           | Train Accuracy     | Test Accuracy      | RMSE score | r_2 score |
-|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|-----------------------------|--------------------|--------------------|------------|-----------|
-| XGBoost       | total population, ozone, pm2.5, diesel pm, pesticides, traffic, cleanup sites, groundwater threats, haz. waste, imp. water bodies, solid waste, pollution burden, low birth weight, education, linguistic isolation, poverty, pop. char. , drinking water, tox. release, unemployment, ces_per, cardiovascular disease, housing burden, est total, est gen, est cold, est farm, est other | gradient boosting supervised regression | Accuracy, r_2 score, & RMSE | 0.9472151826696329 | 0.7639090300436409 | 14.376141  | 0.7       |
-| Random Forest | total population, ozone, pm2.5, diesel pm, pesticides, traffic, cleanup sites, groundwater threats, haz. waste, imp. water bodies, solid waste, pollution burden, education, linguistic isolation, poverty, pop. char. , drinking water, tox. release, unemployment, ces_per, housing burden, est total, est gen, est cold, est farm, est other                                           | meta estimator regression               | Accuracy, r_2 score, & RMSE | 0.9631357268516347 | 0.7488496371839088 | 14.739432  | 0.6       |
-|               |                                                                                                                                                                                                                                                                                                                                                                                           |                                         |                             |                    |                    |            |           |
- -->
+<img src = Giovanna/images/lbwa.png><br>
+_Features importances with all features, model target is `low birth-weight`._
+
+<img src = Giovanna/images/asthmanse.png><br>
+_Features importances without socio-economic features, model target is `asthma`._
+
+<img src = Giovanna/images/heartnse.png><br>
+_Features importances without socio-economic features, model target is `heart-attacke` hospitalization._ 
+
+<img src = Giovanna/images/lbwnse.png><br>
+_Features importances without socio-economic features, model l target is low birth-weight`._
+
+<br > 
+
+> ### Marshall: XGBOOST
+
+Features used: 
+| total population, ozone, pm2.5, diesel pm, pesticides, traffic, cleanup sites, groundwater threats, haz. waste, imp. water bodies, solid waste, pollution burden, low birth weight, education, linguistic isolation, poverty, pop. char. , drinking water, tox. release, unemployment, ces_per, cardiovascular disease, housing burden, est total, est gen, est cold, est farm, est other | gradient boosting supervised regression |
+| Model         | features used  type   | evaluation metric  | Train Accuracy  | Test Accuracy | RMSE score | MAE test score |
+| ---        | ---  | --- | --- | ---| ---| ---
+| XGBoost       | R2, RMSE, & MAE | 0.9139 | 0.7853 | 13.6915  | 9.3296       |
+| Random Forest  meta estimator regression               | R2, RMSE, & MAE | 0.9634 | 0.7503 | 14.7307  | 9.9952       |
 
 
 ## _Model Selection and Findings_
@@ -119,117 +189,16 @@ These should follow from your project
     * overall inrease in ppm in CA because of fires
     * overal increase in VMT in CA because of ... our poor planning 
 
-
 ## _Conclusion_
-You should provide an answer to your problem statement
+We saw saw no meaningful relationship to create robust models for health outcomes using our warehouse-aggregated data. _Cal EnviroScreen_ scores highly reflect `asthma` and `pollution burden` but not `hospitalization rates`. Socioeconomic factors aggregated in _Cal EnviroScreen_ built best predictive models for negative health outcomes, highlighting the need for the State to address root causes for pollution burden. 
 
 ---
 ## _Next Steps_
-Always focus on the positive (it's not what you did wrong, it's what you look forward to improving).
-Is your model ready for production? Probably not, but you can comment on how it might get there.
-Does this project demonstrate skills that you think could be applied to similar problems?
+We will continue to aggregate more data with finer granularity, and explore the raw data from which the CalEnviroScreen was sourced and modeled. Furthemore, spatial and temporal analyses will provide more robust models for projecting and adddressing communites to support. 
+<br> 
 
+---
 > ### Background: From the Press 
 * <a href ="https://www.epi.org/publication/unfulfilled-promises-amazon-warehouses-do-not-generate-broad-based-employment-growth/"> EPI: Warehouses Do Not Generate Broad-Based Employment </a> (cites the source I have for fulfillment center locations)
 * <a href = https://www.cbre.com/insights/local-response/2022-north-america-industrial-big-box-los-angeles-county> CBRE: 2022 North America Industrial Big Box Review & Outlook: Los Angeles County</a>
 > 
-
----
-
-> ## Data Dictionaries, _cont._
-<br>
-
-> ### For `ZBP[YR]DETAIL.TXT` files
-
-| Name     | Data Type | Description                                                 |
-|----------|------|-------------------------------------------------------------|
-| ZIP      | C    | ZIP Code                                                    |
-| NAICS    | C    | Industry Code - 6-digit NAICS code.                         |
-| EST      | N    | Total Number of Establishments                              |
-| N1_4     | N    | Number of Establishments: 1-4 Employee Size Class           |
-| N5_9     | N    | Number of Establishments: 5-9 Employee Size Class           |
-| N10_19   | N    | Number of Establishments: 10-19 Employee Size Class         |
-| N20_49   | N    | Number of Establishments: 20-49 Employee Size Class         |
-| N50_99   | N    | Number of Establishments: 50-99 Employee Size Class         |
-| N100_249 | N    | Number of Establishments: 100-249 Employee Size Class       |
-| N250_499 | N    | Number of Establishments: 250-499 Employee Size Class       |
-| N500_999 | N    | Number of Establishments: 500-999 Employee Size Class       |
-| N1000    | N    | Number of Establishments: 1,000 or More Employee Size Class |  
-
-> ### For `ZBP[YR]TOTALS.TXT` files 
-
-| Name    | Data Type | Description           |
-|---------|------|-----------------------|
-| ZIP     | C    | ZIP Code              |
-| NAME    | C    | ZIP Code Name         |
-| EMPFLAG | C    | Data Suppression Flag |
-| EMP_NF   | C | Total Mid-March Employees Noise Flag (flat definitions in table below) |
-| EMP      | N | Total Mid-March Employees with Noise                                                           |
-| QP1_NF   | C | Total First Quarter Payroll Noise Flag                                                         |
-| QP1      | N | Total First Quarter Payroll ($1,000) with Noise                                                |
-| AP_NF    | C | Total Annual Payroll Noise Flag                                                                |
-| AP       | N | Total Annual Payroll ($1,000) with Noise                                                       |
-| EST      | N | Total Number of Establishments                                                                 |
-| CITY     | C | ZIP City Name                                                                                  |
-| STABBR   | C | ZIP State Abbreviation                                                                         |
-| CTY_NAME | C | ZIP County Name                                                                                |
-
-> ### For `CBP[YR]CO.TXT` files 
-
-| Name     | Data Type | Description                         |
-|----------|------|-------------------------------------|
-| FIPSTATE | C    | FIPS State Code                     |
-| FIPSCTY  | C    | FIPS County Code                    |
-| NAICS    | C    | Industry Code - 6-digit NAICS code. |
-| EMPFLAG  | C    | Data Suppression Flag               |
-| EMP_NF                  | C | Total Mid-March Employees Noise Flag (Noise Flag below)
-| EMP                     | N | Total Mid-March Employees with Noise                                                           |
-| QP1_NF                  | C | Total First Quarter Payroll Noise Flag                                                         |
-| QP1                     | N | Total First Quarter Payroll ($1,000) with Noise                                                |
-| AP_NF                   | C | Total Annual Payroll Noise Flag                                                                |
-| AP                      | N | Total Annual Payroll ($1,000) with Noise                                                       |
-| EST                     | N | Total Number of Establishments                                                                 |
-| N1_4                    | N | Number of Establishments: 1-4 Employee Size Class                                              |
-| N5_9                    | N | Number of Establishments: 5-9 Employee Size Class                                              |
-| N10_19                  | N | Number of Establishments: 10-19 Employee Size Class                                            |
-| N20_49                  | N | Number of Establishments: 20-49 Employee Size Class                                            |
-| N50_99                  | N | Number of Establishments: 50-99 Employee Size Class                                            |
-| N100_249                | N | Number of Establishments: 100-249 Employee Size Class                                          |
-| N250_499                | N | Number of Establishments: 250-499 Employee Size Class                                          |
-| N500_999                | N | Number of Establishments: 500-999 Employee Size Class                                          |
-| N1000                   | N | Number of Establishments: 1,000 or More Employee Size Class                                    |
-| N1000_1                 | N | Number of Establishments: Employment Size Class: 1,000-1,499 Employees                         |
-| N1000_2                 | N | Number of Establishments: Employment Size Class: 1,500-2,499 Employees                         |
-| N1000_3                 | N | Number of Establishments: Employment Size Class: 2,500-4,999 Employees                         |
-| N1000_4                 | N | Number of Establishments: Employment Size Class: 5,000 or More Employees                       |
-| CENSTATE                | C | Census State Code                                                                              |
-| CENCTY                  | C | Census County Code                                                                             |
-
-<br>
-
-| CLASS | # EMPLOYEES | - |
-|---|-----------------|---|
-| A | 0-19            |   |
-| B | 20-99           |   |
-| C | 100-249         |   |
-| E | 250-499         |   |
-| F | 500-999         |   |
-| G | 1,000-2,499     |   |
-| H | 2,500-4,999     |   |
-| I | 5,000-9,999     |   |
-| J | 10,000-24,999   |   |
-| K | 25,000-49,999   |   |
-| L | 50,000-99,999   |   |
-| M | 100,000 or More |   |
-
-<br>
-
-> * Employer Flag: denotes employment size class for data withheld to avoid disclosure (confidentiality) or withheld because data do not meet publication standard
->* NOTE: Noise Flag definitions (fields ending in _NF) are:
-
-| CODE | Noise Definition | - | 
-|-------------------------------|------------------------------------------------------------------------------------------------------------------|---|
-| G                             | 0 to < 2% noise (low noise)                                                                                      |   |
-| H                             | 2 to < 5% noise (medium noise)                                                                                   |   |
-| D                             | Withheld to avoid disclosing data for individual companies; data are included in higher level totals. Employment or payroll field set to zero. |    |
-| S                             | Withheld because estimate did not meet publication standards. Employment or payroll field set to zero.           |   |
