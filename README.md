@@ -22,22 +22,12 @@ California Office of Environmental Health Hazard Assessment (<a href = "https://
 
  Source  | File  | Report Date  | Shape | 
  ---     | ---   |  ---         |  ---  |
- <a href = "https://oehha.ca.gov/calenviroscreen/report-general-info/calenviroscreen-10"> CalEnviroScreen 1 </a> |  <a href = "https://github.com/gigi-codes/CO2_modelling/blob/g_branch/raw_data/calenviroscreendatav11.xls"> Data (xlsx) </a> | April 2013 | FILLIN |
+ <a href = "https://oehha.ca.gov/calenviroscreen/report-general-info/calenviroscreen-10"> CalEnviroScreen 1 </a> |  <a href = "https://github.com/gigi-codes/CO2_modelling/blob/g_branch/raw_data/calenviroscreendatav11.xls"> Data (xlsx) </a> | April 2013 | (1500,49) |
  <a href = "https://data.ca.gov/dataset/calenviroscreen-2-0"> CalEnviroScreen 2 </a> |  <a href = "https://oehha.ca.gov/media/downloads/calenviroscreen/report/ces20updateoct2014.xlsx"> Data (xlsx) </a> | Oct 2014 | (8035, 51) |
  <a href = "https://oehha.ca.gov/calenviroscreen/report/calenviroscreen-30"> CalEnviroScreen 3 </a>  | <a href =  "https://oehha.ca.gov/media/downloads/calenviroscreen/document/ces3results.xlsx"> Data (xlsx) </a>     | June 2018 |  (8035, 51) |
  <a href = "https://calenviroscreen-oehha.hub.arcgis.com"> CalEnviroScreen 4 </a> | <a href = "https://calenviroscreen-oehha.hub.arcgis.com"> Data, Dictionarty ZIP </a>| Oct 2021 |  (8035, 51) |
  |   | |  Combined Data   | (25444, 62) |
  |   | |   **Used Data**   | (14912, 59) |
-
-From this data, we used the following for our model: 
-
- * `ozone` data from CalEnviroScreen (CAES) 4: converted from yearly units to daily units
- * `low birth rate` in CAES 2: converted from fraction to percent
- * `others` ? 
-
- * `99%` of observations were ommitted: 
-    * feature/column only reported for one year
-    * `Nan` were `DROPPED` `FILLED WITH MEDIAN`
  
 <br>
 
@@ -55,11 +45,6 @@ name        | description
 ---         | --- 
 est total   | total number of warehouses in class 
 est ag      | total number of warehouse for agricultural 
-
-
-### Additional cleaning steps: 
-* filled medians? 
-
 
 ### Data: _Model Features_
 
@@ -90,11 +75,13 @@ low birth weight| numeric   | % newborns weighing `< 2.5 kg` (#/100 live births)
 * outliers in features were not dropped: as the data from the report is meticulously collected and averaged, eliminating observations outside of some central-tendency would eliminate communities that are most affected by selected factors. 
 
 <img src = Giovanna/images/warehousehealth.png><br>
+_Health outcomes on vertical axis suggest locations with high-warehouse density have higher rates of negative health outcomes._
 
-<img src = Giovanna/images/warehousehealth.png><br>
+<img src = Giovanna/images/traffichealth.png><br>
+_Health outcomes on vertical axis suggest locations with high-warehouse density have higher rates of negative health outcomes._
 
-<img src = Giovanna/images/warehousehealth.png><br>
-
+<img src = Giovanna/images/dieselhealth.png><br>
+_Health outcomes on vertical axis suggest locations with high-warehouse density have higher rates of negative health outcomes._
 ---
 ## _Modeling_
 
@@ -134,14 +121,30 @@ the caes scores are decent.
 
 `Random Forest Regression` over a Gridsearch to find optimal values returned the following importances and low-performance scores, indicating that the metrics we used to model health outcomes are insufficient, and highlighting that socioeconomic factors are much more predictive. Specifically, the number of warehouses in a given zip code does not reflect the outcomes in that zip code. 
 
-Model   | Estimator                | Features   | Target    |  $R^2$
----     |---                       | ---        | ---       | --- 
-1      | Decision Tree Regressor   | all | asthma           | -0.07
-2      | Decision Tree Regressor   | all | heart attack     | -0.07
-3      | Decision Tree Regressor   | all | low birth weight | -0.07
-4      | Decision Tree Regressor   | non-se | asthma           | -0.07
-5      | Decision Tree Regressor   | non-se | heart attack     | -0.07
-6     | Decision Tree Regressor    | non-se | low birth weight | -0.07
+> Model   | Estimator                | Features   | Target    |  $R^2$
+> ---     |---                       | ---        | ---       | --- 
+> 1       | SVR                      | all        | asthma    | 0.29
+
+## Random Forest Regression Modell Tuning over GridSearch
+
+> ### Using all Features: 
+> Model  | Estimator  | Target    | $R^2$             | Max Error   | Scale 
+>  ---   | ---        | ---       | ---               | ---         | -- 
+> 1      | RF         | Asthma    | -0.35             | 10.7        | #/10,000
+> 2      | RF         | Low Birth Weight  |  -0.25    | 7           | #/100
+> 2      | RF         | Cardiovascular Disease    | 0.01 | 30       | #/10,000
+
+<br>
+
+> ### Dropping SocioEconomic Features: 
+> Model  | Estimator  | Target    | $R^2$             | Max Error   | Scale 
+>  ---   | ---        | ---       | ---               | ---         | -- 
+> 1      | RF         | Asthma    | -0.01             | 180 	    | #/10,000         
+> 2      | RF         | Low Birth Weight                |  -0.25    | 8     | #/100          
+> 2      | RF         | Cardiovascular Disease    | -0.05  | 30    | #/10,000     
+> 
+
+ ### None of these models predictably return health outcomes. 
 
 <br> 
 
@@ -175,17 +178,8 @@ Features used:
 | Random Forest  meta estimator regression               | R2, RMSE, & MAE | 0.9634 | 0.7503 | 14.7307  | 9.9952       |
 
 
-## _Model Selection and Findings_
-Primary findings/conclusions/recommendations
-These should follow from your project
-
-## _Discussion_ 
-* Some confounding factors: 
-    * overall inrease in ppm in CA because of fires
-    * overal increase in VMT in CA because of ... our poor planning 
-
 ## _Conclusion_
-We saw saw no meaningful relationship to create robust models for health outcomes using our warehouse-aggregated data. _Cal EnviroScreen_ scores highly reflect `asthma` and `pollution burden` but not `hospitalization rates`. Socioeconomic factors aggregated in _Cal EnviroScreen_ built best predictive models for negative health outcomes, highlighting the need for the State to address root causes for pollution burden. 
+We saw saw no meaningful relationship to create robust models for health outcomes using our warehouse-aggregated data for any models we tried to fit. _Cal EnviroScreen_ scores highly reflect `asthma` and `pollution burden` but not `hospitalization rates`. Socioeconomic factors aggregated in _Cal EnviroScreen_ built best predictive models for negative health outcomes, highlighting the need for the State to address root causes for pollution burden. 
 
 ---
 ## _Next Steps_
