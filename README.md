@@ -4,7 +4,7 @@
 ### UPDATE: May 1, 2022
 LA TIMES Op-Ed: <a href = https://www.latimes.com/opinion/story/2022-05-01/inland-empire-warehouse-growth-map-environment>We mapped the warehouse takeover of the Inland Empire</a> by <a href = "https://www.pitzer.edu/academics/faculty/susan-phillips/"> Dr. Susan Phillips (professor of Enviornmental Analysis)</a>, on the team's work at the <a href = https://www.pitzer.edu/redfordconservancy/> Robert Redford Conservancy for Southern California Sustainability at Pitzer College</a>. 
 
-Images for presentation slides mapping increase of warehousees are screencaps from this <a href = https://public.tableau.com/app/profile/g.x6767/viz/CES_1_4/Dashboard1> tableau</a> (completed to visualize the changes in densit) complement the ongoing work of researchers in the Inland Empire. 
+Images for presentation slides mapping increase of warehousees are screencaps from this <a href = https://public.tableau.com/app/profile/g.x6767/viz/CES_1_4/Dashboard1> tableau</a> (completed to visualize the changes in density) complement the ongoing work of researchers in the Inland Empire. 
 
 ---
 SUMMARY
