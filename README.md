@@ -1,6 +1,14 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Health Outcomes Modeled Over Multiple CalEnviroScreen Reporting Periods
 
 ---
+### UPDATE: May 1, 2022
+LA TIMES Op-Ed: <a href = https://www.latimes.com/opinion/story/2022-05-01/inland-empire-warehouse-growth-map-environment>We mapped the warehouse takeover of the Inland Empire</a> by <a href = "https://www.pitzer.edu/academics/faculty/susan-phillips/"> Dr. Susan Phillips (professor of Enviornmental Analysis)</a>, on the team's work at the <a href = https://www.pitzer.edu/redfordconservancy/> Robert Redford Conservancy for Southern California Sustainability at Pitzer College</a>. 
+
+Images for presentation slides mapping increase of warehousees are screencaps from this <a href = https://public.tableau.com/app/profile/g.x6767/viz/CES_1_4/Dashboard1> tableau</a> (completed to visualize the changes in densit) complement the ongoing work of researchers in the Inland Empire. 
+
+---
+SUMMARY
+---
 We aggregated data from `4` <a href = "https://oehha.ca.gov/calenviroscreen/about-calenviroscreen">CA OEHHA CalEnviro Screen</a> reports, appended warehouse counts extracted from <a href = "link"> US Census Business Data</a> and trained numerous estimators, however none reliably modelled health outcomes using the aggregated data.
 
 ---
